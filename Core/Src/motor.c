@@ -6,6 +6,56 @@ MotorState Motor3;
 MotorState Motor4;
 MotorState Motor5;
 
+/*
+void PhaseConfig(char p,uint8_t State) {
+	switch (p) {
+		case 'A':
+			HAL_GPIO_WritePin(Motor_Phase_A, GPIO_PIN, State);
+			break;
+		case 'B':
+			HAL_GPIO_WritePin(Motor_Phase_A, GPIO_Pin, State);
+			break;
+		case 'C':
+			HAL_GPIO_WritePin(Motor_Phase_A, GPIO_Pin, State);
+			break;
+		case 'D':
+			HAL_GPIO_WritePin(Motor_Phase_A, GPIO_Pin, State);
+			break;
+		default:
+			break;
+	}
+}*/
+void MotorPhase(uint8_t n) {
+	switch (n) {
+	case 1:
+		PhaseConfig('A',1);
+		PhaseConfig('B',1);
+		PhaseConfig('C',1);
+		PhaseConfig('D',1);
+		break;
+	case 2:
+		PhaseConfig('A',1);
+		PhaseConfig('B',1);
+		PhaseConfig('C',1);
+		PhaseConfig('D',1);
+		break;
+	case 3:
+		PhaseConfig('A',1);
+		PhaseConfig('B',1);
+		PhaseConfig('C',1);
+		PhaseConfig('D',1);
+		break;
+	case 4:
+		PhaseConfig('A',1);
+		PhaseConfig('B',1);
+		PhaseConfig('C',1);
+		PhaseConfig('D',1);
+		break;
+	default:
+		break;
+	}
+}
+/*
 void pinStepSizeConfig(int M) {
 	switch(M) {
 	case 1:
@@ -107,7 +157,7 @@ void pinStepSizeConfig(int M) {
 		Uartprint("\r\n Error : unknow Motor",-1);
 		break;
 	}
-}
+}*/
 void pinMotorReadyConfig(int M) {
 	switch(M) {
 	case 1:
@@ -160,32 +210,59 @@ void pinSensConfig(int M) {
 		break;
 	}
 }
-void VitConfig(MotorState M,int v) {
-	int fTim=v*M.mReduction*M.mStepRevo*M.stepSize;
-	M.htim.Instance->ARR=170000000/(17*fTim) -1;
-	M.htim.Instance->CCR1=50*M.htim.Instance->ARR/100;
+void VitConfig(int M,int v) {
+	int fTim;
+	switch(M) {
+	case 1 :
+		fTim=v*Motor1.mStepRevo*Motor1.stepSize;
+		Motor1.htim.Instance->ARR=170000000/(17*fTim) -1;
+		Motor1.htim.Instance->CCR1=50*Motor1.htim.Instance->ARR/100;
+		break;
+	case 2 :
+		fTim=v*Motor2.mStepRevo*Motor4.stepSize;
+		Motor4.htim.Instance->ARR=170000000/(17*fTim) -1;
+		Motor4.htim.Instance->CCR2=50*Motor1.htim.Instance->ARR/100;
+		break;
+	case 3 :
+		fTim=v*Motor3.mStepRevo*Motor3.stepSize;
+		Motor4.htim.Instance->ARR=170000000/(17*fTim) -1;
+		Motor4.htim.Instance->CCR2=50*Motor1.htim.Instance->ARR/100;
+		break;
+	case 4 :
+		fTim=v*Motor4.mStepRevo*Motor4.stepSize;
+		Motor4.htim.Instance->ARR=170000000/(17*fTim) -1;
+		Motor4.htim.Instance->CCR2=50*Motor1.htim.Instance->ARR/100;
+		break;
+	case 5 :
+		fTim=v*Motor5.mStepRevo*Motor5.stepSize;
+		Motor4.htim.Instance->ARR=170000000/(17*fTim) -1;
+		Motor4.htim.Instance->CCR1=50*Motor1.htim.Instance->ARR/100;
+		break;
+	default:
+		break;
+	}
 }
 void pwmMotor(int M) {
 	switch (M) {
 	case 1:
-		if (Motor1.Active==false) HAL_TIMEx_PWMN_Stop_IT(&htim1, TIM_CHANNEL_3);
-		else HAL_TIMEx_PWMN_Start_IT(&htim1, TIM_CHANNEL_3);
+		if (Motor1.Active==false) HAL_TIM_PWM_Stop_IT(&htim4, TIM_CHANNEL_1);
+		else HAL_TIM_PWM_Start_IT(&htim4, TIM_CHANNEL_1);
 		break;
 	case 2:
-		if (Motor2.Active==false) HAL_TIM_PWM_Stop_IT(&htim2,TIM_CHANNEL_2);
-		else HAL_TIM_PWM_Start_IT(&htim2,TIM_CHANNEL_2);
+		if (Motor2.Active==false) HAL_TIMEx_PWMN_Stop_IT(&htim1,TIM_CHANNEL_2);
+		else HAL_TIMEx_PWMN_Start_IT(&htim1,TIM_CHANNEL_2);
 		break;
 	case 3:
-		if (Motor3.Active==false) HAL_TIM_PWM_Stop_IT(&htim3,TIM_CHANNEL_2);
-		else HAL_TIM_PWM_Start_IT(&htim3,TIM_CHANNEL_2);
+		if (Motor3.Active==false) HAL_TIM_PWM_Stop_IT(&htim2,TIM_CHANNEL_2);
+		else HAL_TIM_PWM_Start_IT(&htim2,TIM_CHANNEL_2);
 		break;
 	case 4:
-		if (Motor4.Active==false) HAL_TIM_PWM_Stop_IT(&htim4,TIM_CHANNEL_4);
-		else HAL_TIM_PWM_Start_IT(&htim4,TIM_CHANNEL_4);
+		if (Motor4.Active==false) HAL_TIM_PWM_Stop_IT(&htim8,TIM_CHANNEL_2);
+		else HAL_TIM_PWM_Start_IT(&htim8,TIM_CHANNEL_2);
 		break;
 	case 5:
-		if (Motor5.Active==false) HAL_TIMEx_PWMN_Stop_IT(&htim8, TIM_CHANNEL_4);
-		else HAL_TIMEx_PWMN_Start_IT(&htim8, TIM_CHANNEL_4);
+		if (Motor5.Active==false) HAL_TIM_PWM_Stop_IT(&htim3, TIM_CHANNEL_1);
+		else HAL_TIM_PWM_Start_IT(&htim3, TIM_CHANNEL_1);
 		break;
 	default:
 		break;
@@ -193,38 +270,38 @@ void pwmMotor(int M) {
 }
 void MotorConfig(char * M) {
 	if (strcmp(M,"Motor1")==0)	{
-		pinStepSizeConfig(1);
+		//pinStepSizeConfig(1);
 		pinSensConfig(1);
 		pinMotorReadyConfig(1);
-		VitConfig(Motor1,Motor1.vitesse);
+		VitConfig(1,Motor1.vitesse);
 		pwmMotor(1);
 	}
 	else if (strcmp(M,"Motor2")==0)	{
-		pinStepSizeConfig(2);
+		//pinStepSizeConfig(2);
 		pinSensConfig(2);
 		pinMotorReadyConfig(2);
-		VitConfig(Motor2,Motor2.vitesse);
+		VitConfig(2,Motor2.vitesse);
 		pwmMotor(2);
 	}
 	else if (strcmp(M,"Motor3")==0)	{
-		pinStepSizeConfig(3);
+		//pinStepSizeConfig(3);
 		pinSensConfig(3);
 		pinMotorReadyConfig(3);
-		VitConfig(Motor3,Motor3.vitesse);
+		VitConfig(3,Motor3.vitesse);
 		pwmMotor(3);
 	}
 	else if (strcmp(M,"Motor4")==0)	{
-		pinStepSizeConfig(4);
+		//pinStepSizeConfig(4);
 		pinSensConfig(4);
 		pinMotorReadyConfig(4);
-		VitConfig(Motor4,Motor4.vitesse);
+		VitConfig(4,Motor4.vitesse);
 		pwmMotor(4);
 	}
 	else if (strcmp(M,"Motor5")==0)	{
-		pinStepSizeConfig(5);
+		//pinStepSizeConfig(5);
 		pinSensConfig(5);
 		pinMotorReadyConfig(5);
-		VitConfig(Motor5,Motor5.vitesse);
+		VitConfig(5,Motor5.vitesse);
 		pwmMotor(5);
 	}
 }
@@ -236,16 +313,16 @@ void MotorInit() {
 	Motor1.htim=htim1;
 	Motor1.stepSize=16;
 	Motor1.position=0;
-	Motor1.vitesse=5;
+	Motor1.vitesse=20;
 	MotorOrder("Motor1",true,false,false);
 	MotorConfig("Motor1");
 
 	Motor2.mReduction=27;
 	Motor2.mStepRevo=200;
-	Motor2.htim=htim2;
+	Motor2.htim=htim1;
 	Motor2.stepSize=16;
 	Motor2.position=0;
-	Motor2.vitesse=5;
+	Motor2.vitesse=1;
 	MotorOrder("Motor2",true,false,false);
 	MotorConfig("Motor2");
 
@@ -312,9 +389,28 @@ void MotorPosition(char * M,int p) {
 		MotorCmd("Motor4");
 	}
 }
+void MotorAngle(char * M,int a) {
+	int step;
+	if (strcmp(M,"Motor4")==0) {
+		step=Motor4.mStepRevo*360/a;
+		MotorPosition(M,step);
+	}
+}
 
 void MotorCmd(char * M) {
-	if (strcmp(M,"Motor4")==0) {
+	if (strcmp(M,"Motor1")==0) {
+		MotorConfig(M);
+		pwmMotor(1);
+	}
+	else if (strcmp(M,"Motor2")==0) {
+		MotorConfig(M);
+		pwmMotor(2);
+	}
+	else if (strcmp(M,"Motor3")==0) {
+		MotorConfig(M);
+		pwmMotor(3);
+	}
+	else if (strcmp(M,"Motor4")==0) {
 		MotorConfig(M);
 		pwmMotor(4);
 	}

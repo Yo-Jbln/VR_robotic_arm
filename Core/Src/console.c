@@ -74,32 +74,67 @@ void RunConsole(){
 
 
 int CprCommande(char * c){
-	if (strcmp(c,"Ready")==0) {
-		MotorOrder("Motor4",true,false,false);
-		Uartprint("\r\nDriver Motor4 ready mode",-1);
+	if (strcmp(c,"State")==0) {
+		if (strncmp(c+6,"Motor2")==0) {
+			Uartprint("\r\nMotor2 ready  mode",Motor2.Ready);
+			Uartprint("\r\nMotor2 Active mode",Motor2.Active);
+			Uartprint("\r\nMotor2 Sens   mode",Motor2.Sens);
+			Uartprint("\r\nMotor2 Reduction",Motor2.mReduction);
+			Uartprint("\r\nPSC = ",htim1.Instance->PSC);
+			Uartprint(", ARR = ",htim1.Instance->ARR);
+			Uartprint(", CCR = ",htim1.Instance->CCR2);
+			Uartprint(", Alpha = ",(htim1.Instance->CCR2*100)/htim1.Instance->ARR);
+			Uartprint((char *) prompt,-1);
+		}
+		if (strncmp(c+6,"Motor4")==0) {
+			Uartprint("\r\nMotor4 ready  mode",Motor4.Ready);
+			Uartprint("\r\nMotor4 Active mode",Motor4.Active);
+			Uartprint("\r\nMotor4 Sens   mode",Motor4.Sens);
+			Uartprint("\r\nMotor4 Reduction",Motor4.mReduction);
+			Uartprint("\r\nPSC = ",htim8.Instance->PSC);
+			Uartprint(", ARR = ",htim8.Instance->ARR);
+			Uartprint(", CCR = ",htim8.Instance->CCR2);
+			Uartprint(", Alpha = ",(htim8.Instance->CCR2*100)/htim8.Instance->ARR);
+			Uartprint((char *) prompt,-1);
+		}
+	}
+	else if (strcmp(c,"Ready")==0) {
+		MotorOrder("Motor2",true,false,false);
 		Uartprint((char *) prompt,-1);
 	}
 	else if (strcmp(c,"Sleep")==0) {
-		MotorOrder("Motor4",false,false,false);
-		Uartprint("\r\nDriver Motor4 sleep mode",-1);
+		MotorOrder("Motor2",false,false,false);
 		Uartprint((char *) prompt,-1);
 	}
 	else if (strcmp(c,"on")==0) {
-		MotorOrder("Motor4",true,true,false);
+		MotorOrder("Motor2",true,true,false);
+		Uartprint("\r\nDriver Motor2 sleep mode",Motor2.Ready);
+		Uartprint("\r\nDriver Motor2 ready mode",Motor2.Active);
+		Uartprint("\r\nDriver Motor2 dir mode",Motor2.Sens);
 		Uartprint((char *) power_on,-1);
 		Uartprint((char *) prompt,-1);
 		return 1;
 	}
 	else if(strcmp(c,"off")==0) {
-		MotorOrder("Motor4",true,false,false);
+		MotorOrder("Motor2",true,false,false);
+		Uartprint("\r\nDriver Motor2 sleep mode",Motor2.Ready);
+		Uartprint("\r\nDriver Motor2 ready mode",Motor2.Active);
+		Uartprint("\r\nDriver Motor2 dir mode",Motor2.Sens);
 		Uartprint((char *) power_off,-1);
 		Uartprint((char *) prompt,-1);
 		return 1;
 	}
 	else if(strncmp(c,"vit",3)==0) {
-		VitConfig(Motor4,atoi(c+3));
+		VitConfig(1,atoi(c+3));
 		Uartprint("\r\nAjustement de la vitesse",-1);
 		Uartprint((char *) prompt,-1);
+		return 1;
+	}
+	else if(strncmp(c,"ang",3)==0) {
+		MotorAngle("Motor4",atoi(c+3));
+		Uartprint("\r\nAjustement de la position",-1);
+		htim4.Instance->CCR2=50*htim4.Instance->ARR/100;
+		CprCommande("pwm");
 		return 1;
 	}
 	else if(strncmp(c,"pos",3)==0) {
@@ -110,10 +145,28 @@ int CprCommande(char * c){
 		return 1;
 	}
 	else if(strcmp(c,"pwm")==0) {
-		Uartprint("\r\nPSC = ",htim4.Instance->PSC);
-		Uartprint(", ARR = ",htim4.Instance->ARR);
-		Uartprint(", CCR = ",htim4.Instance->CCR1);
-		Uartprint(", Alpha = ",(htim4.Instance->CCR2*100)/htim4.Instance->ARR);
+		Uartprint("\r\nPSC = ",htim1.Instance->PSC);
+		Uartprint(", ARR = ",htim1.Instance->ARR);
+		Uartprint(", CCR = ",htim1.Instance->CCR2);
+		Uartprint(", Alpha = ",(htim1.Instance->CCR2*100)/htim1.Instance->ARR);
+		Uartprint((char *) prompt,-1);
+		return 1;
+	}
+	else if(strcmp(c,"dir")==0) {
+		Uartprint("\r\nDriver Motor2 dir mode",Motor2.Sens);
+		MotorOrder("Motor2",true,false,!Motor2.Sens);
+		HAL_Delay(100);
+		MotorOrder("Motor2",true,true,Motor2.Sens);
+		Uartprint("\r\nDriver Motor2 dir mode",Motor2.Sens);
+		Uartprint((char *) prompt,-1);
+		return 1;
+	}
+	else if(strncmp(c,"dir",3)==0) {
+		Uartprint("\r\nDriver Motor2 dir mode",Motor2.Sens);
+		MotorOrder("Motor2",true,false,atoi(c+3));
+		HAL_Delay(100);
+		MotorOrder("Motor2",true,true,atoi(c+3));
+		Uartprint("\r\nDriver Motor2 dir mode",Motor2.Sens);
 		Uartprint((char *) prompt,-1);
 		return 1;
 	}
