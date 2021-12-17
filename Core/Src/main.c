@@ -53,6 +53,10 @@ UART_HandleTypeDef huart2;
 #define ESP_BUFFER_SIZE 32
 char esp_rx_buffer[ESP_BUFFER_SIZE];
 char esp_tx_buffer[ESP_BUFFER_SIZE];
+char CmdWaiting[10][6];
+uint8_t idxCmdWaiting=0;
+uint8_t idxByte=0;
+uint8_t flag=0;
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -75,13 +79,37 @@ static void MX_ADC2_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 HAL_UART_RxCpltCallBack(UART_HandleTypeDef * uart) {
+	//sprintf((char *)CmdWaiting[0],"%x",esp_rx_buffer);
+	sprintf((char *)CmdWaiting[0][idxByte],"%x",esp_rx_buffer);
+	sprintf((char *)CmdWaiting[1][idxByte],"%s",esp_rx_buffer);
+	sprintf((char *)CmdWaiting[2][idxByte],"%d",esp_rx_buffer);
+	idxByte++;
+	if (idxByte==6) {
+		flag=1;
+		idxByte=0;
+	}
+	HAL_UART_Receive_IT(&huart1, esp_rx_buffer, HAL_MAX_DELAY);
+}
+
+void Response() {
+	flag=0;
 	/*sprintf((char *)esp_tx_buffer,"%s","O");
 	HAL_UART_Transmit(&huart1, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);*/
-	sprintf((char *)uart_tx_buffer,"\r\nUART%6s ",esp_rx_buffer);
-	HAL_UART_Transmit(&huart2, uart_tx_buffer, strlen(uart_tx_buffer), HAL_MAX_DELAY);
-	sprintf((char *)esp_tx_buffer,"\r\n%ESP6s ",esp_rx_buffer);
+
+	sprintf((char *)esp_tx_buffer,"\r\nCmd reçu en hexa ");
 	HAL_UART_Transmit(&huart2, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);
-	HAL_UART_Receive_IT(&huart1, esp_rx_buffer, HAL_MAX_DELAY);
+	sprintf((char *)esp_tx_buffer,"%x %x %x %x %x %x ",CmdWaiting[0][0],CmdWaiting[0][1],CmdWaiting[0][2],CmdWaiting[0][3],CmdWaiting[0][4],CmdWaiting[0][5]);
+	HAL_UART_Transmit(&huart2, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);
+
+	sprintf((char *)esp_tx_buffer,"\r\nCmd reçu en string ");
+	HAL_UART_Transmit(&huart2, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);
+	sprintf((char *)esp_tx_buffer,"%s %s %s %s %s %s ",CmdWaiting[1][0],CmdWaiting[1][1],CmdWaiting[1][2],CmdWaiting[1][3],CmdWaiting[1][4],CmdWaiting[1][5]);
+	HAL_UART_Transmit(&huart2, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);
+
+	sprintf((char *)esp_tx_buffer,"\r\nCmd reçu en deci ");
+	HAL_UART_Transmit(&huart2, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);
+	sprintf((char *)esp_tx_buffer,"%d %d %d %d %d %d ",CmdWaiting[2][0],CmdWaiting[2][1],CmdWaiting[2][2],CmdWaiting[2][3],CmdWaiting[2][4],CmdWaiting[2][5]);
+	HAL_UART_Transmit(&huart2, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);
 }
 /* USER CODE END 0 */
 
@@ -137,6 +165,7 @@ int main(void)
 	  RunConsole();
 	  MotorCmd("Motor2");
 	  HAL_UART_Receive_IT(&huart1, uart_rx_buffer, 4);
+	  if (flag==1) Response();
 
     /* USER CODE END WHILE */
 
