@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.6.0">
+<eagle version="9.6.2">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
+<setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
@@ -4233,7 +4234,9 @@ In this library the device names are the same as the pin names of the symbols, t
 <instance part="SUPPLY14" gate="GND" x="-134.62" y="-83.82" smashed="yes" rot="R180">
 <attribute name="VALUE" x="-132.715" y="-80.645" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="SUPPLY6" gate="GND" x="-35.56" y="50.8" rot="R90"/>
+<instance part="SUPPLY6" gate="GND" x="-35.56" y="50.8" smashed="yes" rot="R90">
+<attribute name="VALUE" x="-32.385" y="48.895" size="1.778" layer="96" rot="R90"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -4303,26 +4306,26 @@ In this library the device names are the same as the pin names of the symbols, t
 </net>
 <net name="SCK/TX" class="0">
 <segment>
-<pinref part="CAM" gate="G$1" pin="02"/>
-<wire x1="137.16" y1="55.88" x2="124.46" y2="55.88" width="0.1524" layer="91"/>
-<label x="124.46" y="55.88" size="1.778" layer="95" rot="MR0"/>
-</segment>
-<segment>
 <pinref part="CN7" gate="G$1" pin="02"/>
 <wire x1="-63.5" y1="58.42" x2="-76.2" y2="58.42" width="0.1524" layer="91"/>
 <label x="-76.2" y="58.42" size="1.778" layer="95" rot="MR0"/>
 </segment>
-</net>
-<net name="MOSI" class="0">
 <segment>
 <pinref part="CAM" gate="G$1" pin="01"/>
-<wire x1="137.16" y1="58.42" x2="124.46" y2="58.42" width="0.1524" layer="91"/>
-<label x="124.46" y="58.42" size="1.778" layer="95" rot="MR0"/>
+<wire x1="137.16" y1="58.42" x2="127" y2="58.42" width="0.1524" layer="91"/>
+<label x="127" y="58.42" size="1.778" layer="95" rot="R180"/>
 </segment>
+</net>
+<net name="MOSI" class="0">
 <segment>
 <pinref part="CN7" gate="G$1" pin="04"/>
 <wire x1="-63.5" y1="55.88" x2="-76.2" y2="55.88" width="0.1524" layer="91"/>
 <label x="-76.2" y="55.88" size="1.778" layer="95" rot="MR0"/>
+</segment>
+<segment>
+<pinref part="CAM" gate="G$1" pin="02"/>
+<wire x1="137.16" y1="55.88" x2="127" y2="55.88" width="0.1524" layer="91"/>
+<label x="127" y="55.88" size="1.778" layer="95" rot="R180"/>
 </segment>
 </net>
 <net name="STOP_SENSOR4" class="0">
@@ -4351,14 +4354,14 @@ In this library the device names are the same as the pin names of the symbols, t
 </net>
 <net name="SDA/MISO/RX" class="0">
 <segment>
-<pinref part="CAM" gate="G$1" pin="03"/>
-<wire x1="137.16" y1="53.34" x2="127" y2="53.34" width="0.1524" layer="91"/>
-<label x="124.46" y="53.34" size="1.778" layer="95" rot="MR0"/>
-</segment>
-<segment>
 <pinref part="CN7" gate="G$1" pin="01"/>
 <wire x1="-38.1" y1="58.42" x2="-20.32" y2="58.42" width="0.1524" layer="91"/>
 <label x="-20.32" y="58.42" size="1.778" layer="95" rot="MR180"/>
+</segment>
+<segment>
+<pinref part="CAM" gate="G$1" pin="03"/>
+<wire x1="137.16" y1="53.34" x2="127" y2="53.34" width="0.1524" layer="91"/>
+<label x="127" y="53.34" size="1.778" layer="95" rot="R180"/>
 </segment>
 </net>
 <net name="STOP_SENSOR1" class="0">
@@ -4387,14 +4390,14 @@ In this library the device names are the same as the pin names of the symbols, t
 </net>
 <net name="CS" class="0">
 <segment>
-<pinref part="CAM" gate="G$1" pin="04"/>
-<wire x1="137.16" y1="50.8" x2="124.46" y2="50.8" width="0.1524" layer="91"/>
-<label x="124.46" y="50.8" size="1.778" layer="95" rot="MR0"/>
-</segment>
-<segment>
 <pinref part="CN10" gate="G$1" pin="02"/>
 <wire x1="43.18" y1="58.42" x2="30.48" y2="58.42" width="0.1524" layer="91"/>
 <label x="30.48" y="58.42" size="1.778" layer="95" rot="MR0"/>
+</segment>
+<segment>
+<pinref part="CAM" gate="G$1" pin="05"/>
+<wire x1="137.16" y1="48.26" x2="127" y2="48.26" width="0.1524" layer="91"/>
+<label x="127" y="48.26" size="1.778" layer="95" rot="R180"/>
 </segment>
 </net>
 <net name="MOTOR4_READY" class="0">
@@ -4459,14 +4462,14 @@ In this library the device names are the same as the pin names of the symbols, t
 </net>
 <net name="SCL" class="0">
 <segment>
-<pinref part="CAM" gate="G$1" pin="05"/>
-<wire x1="137.16" y1="48.26" x2="124.46" y2="48.26" width="0.1524" layer="91"/>
-<label x="124.46" y="48.26" size="1.778" layer="95" rot="MR0"/>
-</segment>
-<segment>
 <pinref part="CN10" gate="G$1" pin="01"/>
 <wire x1="68.58" y1="58.42" x2="83.82" y2="58.42" width="0.1524" layer="91"/>
 <label x="83.82" y="58.42" size="1.778" layer="95" rot="MR180"/>
+</segment>
+<segment>
+<pinref part="CAM" gate="G$1" pin="04"/>
+<wire x1="137.16" y1="50.8" x2="127" y2="50.8" width="0.1524" layer="91"/>
+<label x="127" y="50.8" size="1.778" layer="95" rot="R180"/>
 </segment>
 </net>
 <net name="MOTOR1_DIR" class="0">
@@ -4961,9 +4964,6 @@ In this library the device names are the same as the pin names of the symbols, t
 </nets>
 </sheet>
 </sheets>
-<errors>
-<approved hash="113,1,-140.598,-175.26,ALIM_MOT,,,,,"/>
-</errors>
 </schematic>
 </drawing>
 </eagle>

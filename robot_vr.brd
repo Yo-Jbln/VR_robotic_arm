@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.6.0">
+<eagle version="9.6.2">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
+<setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="1" unitdist="mm" unit="mm" style="lines" multiple="1" display="no" altdistance="0.025" altunitdist="inch" altunit="inch"/>
@@ -1436,10 +1437,14 @@ design rules under a new name.</description>
 <param name="slThermalsForVias" value="1"/>
 <param name="dpMaxLengthDifference" value="10mm"/>
 <param name="dpGapFactor" value="2.5"/>
-<param name="checkGrid" value="0"/>
 <param name="checkAngle" value="0"/>
 <param name="checkFont" value="1"/>
 <param name="checkRestrict" value="1"/>
+<param name="checkStop" value="0"/>
+<param name="checkValues" value="0"/>
+<param name="checkNames" value="1"/>
+<param name="checkWireStubs" value="1"/>
+<param name="checkPolygonWidth" value="0"/>
 <param name="useDiameter" value="13"/>
 <param name="maxErrors" value="50"/>
 </designrules>
@@ -1540,272 +1545,345 @@ design rules under a new name.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="ALIM_MOT" library="con-phoenix-254" package="2POL254" value="" x="4.99" y="5.63" rot="R270">
+<element name="ALIM_MOT" library="con-phoenix-254" package="2POL254" value="" x="4.99" y="5.63" smashed="yes" rot="R270">
 <attribute name="MF" value="" x="4.99" y="5.63" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MPN" value="" x="4.99" y="5.63" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="6.768" y="8.424" size="1.27" layer="25" rot="R270"/>
 <attribute name="OC_FARNELL" value="unknown" x="4.99" y="5.63" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="OC_NEWARK" value="unknown" x="4.99" y="5.63" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="1.942" y="8.424" size="1.27" layer="27" rot="R270"/>
 </element>
-<element name="C1" library="rcl" package="C1206K" value="100uF" x="239.64" y="36.9" rot="R270"/>
-<element name="C2" library="rcl" package="C1206K" value="100uF" x="171.56" y="35.9" rot="R270"/>
-<element name="C3" library="rcl" package="C1206K" value="100uF" x="103.49" y="36.33" rot="R270"/>
-<element name="C4" library="rcl" package="C1206K" value="100uF" x="46.41" y="35.33" rot="R270"/>
-<element name="C5" library="rcl" package="C1206K" value="100uF" x="12.33" y="44.33"/>
-<element name="CAM" library="SSM-105-L-SV-BE" package="SAMTEC_SSM-105-L-SV-BE" value="SSM-105-L-SV-BE" x="261.82" y="162.15" rot="R90">
-<attribute name="MP" value="SSM-105-L-SV-BE-TR" x="261.82" y="162.15" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MF" value="Samtec" x="261.82" y="162.15" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="DESCRIPTION" value=" 5 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="261.82" y="162.15" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="C1" library="rcl" package="C1206K" value="100uF" x="239.64" y="36.9" smashed="yes" rot="R270">
+<attribute name="NAME" x="240.74" y="38.5" size="1.016" layer="25" rot="R270"/>
+<attribute name="VALUE" x="237.54" y="38.5" size="1.016" layer="27" rot="R270"/>
+</element>
+<element name="C2" library="rcl" package="C1206K" value="100uF" x="171.56" y="35.9" smashed="yes" rot="R270">
+<attribute name="NAME" x="172.66" y="37.5" size="1.016" layer="25" rot="R270"/>
+<attribute name="VALUE" x="169.46" y="37.5" size="1.016" layer="27" rot="R270"/>
+</element>
+<element name="C3" library="rcl" package="C1206K" value="100uF" x="103.49" y="36.33" smashed="yes" rot="R270">
+<attribute name="NAME" x="104.59" y="37.93" size="1.016" layer="25" rot="R270"/>
+<attribute name="VALUE" x="101.39" y="37.93" size="1.016" layer="27" rot="R270"/>
+</element>
+<element name="C4" library="rcl" package="C1206K" value="100uF" x="46.41" y="35.33" smashed="yes" rot="R270">
+<attribute name="NAME" x="47.51" y="36.93" size="1.016" layer="25" rot="R270"/>
+<attribute name="VALUE" x="44.31" y="36.93" size="1.016" layer="27" rot="R270"/>
+</element>
+<element name="C5" library="rcl" package="C1206K" value="100uF" x="12.33" y="44.33" smashed="yes">
+<attribute name="NAME" x="10.73" y="45.43" size="1.016" layer="25"/>
+<attribute name="VALUE" x="10.73" y="42.23" size="1.016" layer="27"/>
+</element>
+<element name="CAM" library="SSM-105-L-SV-BE" package="SAMTEC_SSM-105-L-SV-BE" value="SSM-105-L-SV-BE" x="261.82" y="162.15" smashed="yes" rot="R90">
 <attribute name="AVAILABILITY" value="In Stock" x="261.82" y="162.15" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="DESCRIPTION" value=" 5 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="261.82" y="162.15" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="Samtec" x="261.82" y="162.15" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MP" value="SSM-105-L-SV-BE-TR" x="261.82" y="162.15" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="258.25" y="154.8" size="1.27" layer="25" rot="R90"/>
 <attribute name="PACKAGE" value="None" x="261.82" y="162.15" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PRICE" value="None" x="261.82" y="162.15" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-105-L-SV-BE-TR/?ref=eda" x="261.82" y="162.15" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="266.64" y="154.8" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="CAPTEUR1_COM" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="231.8" y="68.58">
-<attribute name="MP" value="SSM-103-S-SV" x="231.8" y="68.58" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="Samtec" x="231.8" y="68.58" size="1.778" layer="27" display="off"/>
-<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="231.8" y="68.58" size="1.778" layer="27" display="off"/>
+<element name="CAPTEUR1_COM" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="231.8" y="68.58" smashed="yes">
 <attribute name="AVAILABILITY" value="In Stock" x="231.8" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="231.8" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Samtec" x="231.8" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="SSM-103-S-SV" x="231.8" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="226.99" y="72.15" size="1.27" layer="25"/>
 <attribute name="PACKAGE" value="None" x="231.8" y="68.58" size="1.778" layer="27" display="off"/>
 <attribute name="PRICE" value="None" x="231.8" y="68.58" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-103-S-SV/?ref=eda" x="231.8" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="226.99" y="63.76" size="1.27" layer="27"/>
 </element>
-<element name="CAPTEUR1_POW" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="231.8" y="44.58" rot="R180">
-<attribute name="MP" value="SSM-103-S-SV" x="231.8" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MF" value="Samtec" x="231.8" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="231.8" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="CAPTEUR1_POW" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="231.8" y="44.58" smashed="yes" rot="R180">
 <attribute name="AVAILABILITY" value="In Stock" x="231.8" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="231.8" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="Samtec" x="231.8" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MP" value="SSM-103-S-SV" x="231.8" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="236.61" y="41.01" size="1.27" layer="25" rot="R180"/>
 <attribute name="PACKAGE" value="None" x="231.8" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="231.8" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-103-S-SV/?ref=eda" x="231.8" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="236.61" y="49.4" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="CAPTEUR2_COM" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="162.14" y="68.58">
-<attribute name="MP" value="SSM-103-S-SV" x="162.14" y="68.58" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="Samtec" x="162.14" y="68.58" size="1.778" layer="27" display="off"/>
-<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="162.14" y="68.58" size="1.778" layer="27" display="off"/>
+<element name="CAPTEUR2_COM" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="162.14" y="68.58" smashed="yes">
 <attribute name="AVAILABILITY" value="In Stock" x="162.14" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="162.14" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Samtec" x="162.14" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="SSM-103-S-SV" x="162.14" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="157.33" y="72.15" size="1.27" layer="25"/>
 <attribute name="PACKAGE" value="None" x="162.14" y="68.58" size="1.778" layer="27" display="off"/>
 <attribute name="PRICE" value="None" x="162.14" y="68.58" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-103-S-SV/?ref=eda" x="162.14" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="157.33" y="63.76" size="1.27" layer="27"/>
 </element>
-<element name="CAPTEUR2_POW" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="162.14" y="44.58">
-<attribute name="MP" value="SSM-103-S-SV" x="162.14" y="44.58" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="Samtec" x="162.14" y="44.58" size="1.778" layer="27" display="off"/>
-<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="162.14" y="44.58" size="1.778" layer="27" display="off"/>
+<element name="CAPTEUR2_POW" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="162.14" y="44.58" smashed="yes">
 <attribute name="AVAILABILITY" value="In Stock" x="162.14" y="44.58" size="1.778" layer="27" display="off"/>
+<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="162.14" y="44.58" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Samtec" x="162.14" y="44.58" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="SSM-103-S-SV" x="162.14" y="44.58" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="157.33" y="48.15" size="1.27" layer="25"/>
 <attribute name="PACKAGE" value="None" x="162.14" y="44.58" size="1.778" layer="27" display="off"/>
 <attribute name="PRICE" value="None" x="162.14" y="44.58" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-103-S-SV/?ref=eda" x="162.14" y="44.58" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="157.33" y="39.76" size="1.27" layer="27"/>
 </element>
-<element name="CAPTEUR3_COM" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="94.9" y="68.58">
-<attribute name="MP" value="SSM-103-S-SV" x="94.9" y="68.58" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="Samtec" x="94.9" y="68.58" size="1.778" layer="27" display="off"/>
-<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="94.9" y="68.58" size="1.778" layer="27" display="off"/>
+<element name="CAPTEUR3_COM" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="94.9" y="68.58" smashed="yes">
 <attribute name="AVAILABILITY" value="In Stock" x="94.9" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="94.9" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Samtec" x="94.9" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="SSM-103-S-SV" x="94.9" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="90.09" y="72.15" size="1.27" layer="25"/>
 <attribute name="PACKAGE" value="None" x="94.9" y="68.58" size="1.778" layer="27" display="off"/>
 <attribute name="PRICE" value="None" x="94.9" y="68.58" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-103-S-SV/?ref=eda" x="94.9" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="90.09" y="63.76" size="1.27" layer="27"/>
 </element>
-<element name="CAPTEUR3_POW" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="94.9" y="44.58">
-<attribute name="MP" value="SSM-103-S-SV" x="94.9" y="44.58" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="Samtec" x="94.9" y="44.58" size="1.778" layer="27" display="off"/>
-<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="94.9" y="44.58" size="1.778" layer="27" display="off"/>
+<element name="CAPTEUR3_POW" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="94.9" y="44.58" smashed="yes">
 <attribute name="AVAILABILITY" value="In Stock" x="94.9" y="44.58" size="1.778" layer="27" display="off"/>
+<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="94.9" y="44.58" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Samtec" x="94.9" y="44.58" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="SSM-103-S-SV" x="94.9" y="44.58" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="90.09" y="48.15" size="1.27" layer="25"/>
 <attribute name="PACKAGE" value="None" x="94.9" y="44.58" size="1.778" layer="27" display="off"/>
 <attribute name="PRICE" value="None" x="94.9" y="44.58" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-103-S-SV/?ref=eda" x="94.9" y="44.58" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="90.09" y="39.76" size="1.27" layer="27"/>
 </element>
-<element name="CAPTEUR4_COM" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="36.66" y="68.58">
-<attribute name="MP" value="SSM-103-S-SV" x="36.66" y="68.58" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="Samtec" x="36.66" y="68.58" size="1.778" layer="27" display="off"/>
-<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="36.66" y="68.58" size="1.778" layer="27" display="off"/>
+<element name="CAPTEUR4_COM" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="36.66" y="68.58" smashed="yes">
 <attribute name="AVAILABILITY" value="In Stock" x="36.66" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="36.66" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Samtec" x="36.66" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="SSM-103-S-SV" x="36.66" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="31.85" y="72.15" size="1.27" layer="25"/>
 <attribute name="PACKAGE" value="None" x="36.66" y="68.58" size="1.778" layer="27" display="off"/>
 <attribute name="PRICE" value="None" x="36.66" y="68.58" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-103-S-SV/?ref=eda" x="36.66" y="68.58" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="31.85" y="63.76" size="1.27" layer="27"/>
 </element>
-<element name="CAPTEUR4_POW" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="36.66" y="44.58">
-<attribute name="MP" value="SSM-103-S-SV" x="36.66" y="44.58" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="Samtec" x="36.66" y="44.58" size="1.778" layer="27" display="off"/>
-<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="36.66" y="44.58" size="1.778" layer="27" display="off"/>
+<element name="CAPTEUR4_POW" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="36.66" y="44.58" smashed="yes">
 <attribute name="AVAILABILITY" value="In Stock" x="36.66" y="44.58" size="1.778" layer="27" display="off"/>
+<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="36.66" y="44.58" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Samtec" x="36.66" y="44.58" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="SSM-103-S-SV" x="36.66" y="44.58" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="31.85" y="48.15" size="1.27" layer="25"/>
 <attribute name="PACKAGE" value="None" x="36.66" y="44.58" size="1.778" layer="27" display="off"/>
 <attribute name="PRICE" value="None" x="36.66" y="44.58" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-103-S-SV/?ref=eda" x="36.66" y="44.58" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="31.85" y="39.76" size="1.27" layer="27"/>
 </element>
-<element name="CN10" library="SSM-119-L-DV" package="SAMTEC_SSM-119-L-DV" value="SSM-119-L-DV" x="162.9" y="139.62" rot="R90">
-<attribute name="MP" value="SSM-119-L-DV" x="162.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MF" value="Samtec Inc." x="162.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="DESCRIPTION" value=" 38 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="162.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="CN10" library="SSM-119-L-DV" package="SAMTEC_SSM-119-L-DV" value="SSM-119-L-DV" x="162.9" y="139.62" smashed="yes" rot="R90">
 <attribute name="AVAILABILITY" value="In Stock" x="162.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="DESCRIPTION" value=" 38 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="162.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="Samtec Inc." x="162.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MP" value="SSM-119-L-DV" x="162.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="157.715" y="114.49" size="1.27" layer="25" rot="R90"/>
 <attribute name="PACKAGE" value="None" x="162.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PRICE" value="None" x="162.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-119-L-DV/?ref=eda" x="162.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="169.335" y="114.49" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="CN7" library="SSM-119-L-DV" package="SAMTEC_SSM-119-L-DV" value="SSM-119-L-DV" x="101.9" y="139.62" rot="R90">
-<attribute name="MP" value="SSM-119-L-DV" x="101.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MF" value="Samtec Inc." x="101.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="DESCRIPTION" value=" 38 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="101.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="CN7" library="SSM-119-L-DV" package="SAMTEC_SSM-119-L-DV" value="SSM-119-L-DV" x="101.9" y="139.62" smashed="yes" rot="R90">
 <attribute name="AVAILABILITY" value="In Stock" x="101.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="DESCRIPTION" value=" 38 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="101.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="Samtec Inc." x="101.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MP" value="SSM-119-L-DV" x="101.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="96.715" y="114.49" size="1.27" layer="25" rot="R90"/>
 <attribute name="PACKAGE" value="None" x="101.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PRICE" value="None" x="101.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-119-L-DV/?ref=eda" x="101.9" y="139.62" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="108.335" y="114.49" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="DRVMOT1_COM" library="SSM-108-L-SV" package="SAMTEC_SSM-108-L-SV" value="SSM-108-L-SV" x="255.87" y="57.28" rot="R180">
-<attribute name="MP" value="SSM-108-L-SV" x="255.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MF" value="Samtec" x="255.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="DESCRIPTION" value=" 8 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="255.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="DRVMOT1_COM" library="SSM-108-L-SV" package="SAMTEC_SSM-108-L-SV" value="SSM-108-L-SV" x="255.87" y="57.28" smashed="yes" rot="R180">
 <attribute name="AVAILABILITY" value="In Stock" x="255.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DESCRIPTION" value=" 8 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="255.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="Samtec" x="255.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MP" value="SSM-108-L-SV" x="255.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="267.03" y="53.71" size="1.27" layer="25" rot="R180"/>
 <attribute name="PACKAGE" value="None" x="255.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="255.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-108-L-SV/?ref=eda" x="255.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="267.03" y="62.1" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="DRVMOT1_POW" library="SSM-108-L-SV" package="SAMTEC_SSM-108-L-SV" value="SSM-108-L-SV" x="255.87" y="44.58" rot="R180">
-<attribute name="MP" value="SSM-108-L-SV" x="255.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MF" value="Samtec" x="255.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="DESCRIPTION" value=" 8 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="255.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="DRVMOT1_POW" library="SSM-108-L-SV" package="SAMTEC_SSM-108-L-SV" value="SSM-108-L-SV" x="255.87" y="44.58" smashed="yes" rot="R180">
 <attribute name="AVAILABILITY" value="In Stock" x="255.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DESCRIPTION" value=" 8 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="255.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="Samtec" x="255.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MP" value="SSM-108-L-SV" x="255.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="267.03" y="41.01" size="1.27" layer="25" rot="R180"/>
 <attribute name="PACKAGE" value="None" x="255.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="255.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-108-L-SV/?ref=eda" x="255.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="267.03" y="49.4" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="DRVMOT2_COM" library="SSM-108-L-SV" package="SAMTEC_SSM-108-L-SV" value="SSM-108-L-SV" x="186.15" y="57.28" rot="R180">
-<attribute name="MP" value="SSM-108-L-SV" x="186.15" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MF" value="Samtec" x="186.15" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="DESCRIPTION" value=" 8 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="186.15" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="DRVMOT2_COM" library="SSM-108-L-SV" package="SAMTEC_SSM-108-L-SV" value="SSM-108-L-SV" x="186.15" y="57.28" smashed="yes" rot="R180">
 <attribute name="AVAILABILITY" value="In Stock" x="186.15" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DESCRIPTION" value=" 8 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="186.15" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="Samtec" x="186.15" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MP" value="SSM-108-L-SV" x="186.15" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="197.31" y="53.71" size="1.27" layer="25" rot="R180"/>
 <attribute name="PACKAGE" value="None" x="186.15" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="186.15" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-108-L-SV/?ref=eda" x="186.15" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="197.31" y="62.1" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="DRVMOT2_POW" library="SSM-108-L-SV" package="SAMTEC_SSM-108-L-SV" value="SSM-108-L-SV" x="186.15" y="44.58" rot="R180">
-<attribute name="MP" value="SSM-108-L-SV" x="186.15" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MF" value="Samtec" x="186.15" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="DESCRIPTION" value=" 8 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="186.15" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="DRVMOT2_POW" library="SSM-108-L-SV" package="SAMTEC_SSM-108-L-SV" value="SSM-108-L-SV" x="186.15" y="44.58" smashed="yes" rot="R180">
 <attribute name="AVAILABILITY" value="In Stock" x="186.15" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DESCRIPTION" value=" 8 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="186.15" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="Samtec" x="186.15" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MP" value="SSM-108-L-SV" x="186.15" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="197.31" y="41.01" size="1.27" layer="25" rot="R180"/>
 <attribute name="PACKAGE" value="None" x="186.15" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="186.15" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-108-L-SV/?ref=eda" x="186.15" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="197.31" y="49.4" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="DRVMOT3_COM" library="SSM-108-L-SV" package="SAMTEC_SSM-108-L-SV" value="SSM-108-L-SV" x="119.01" y="57.28" rot="R180">
-<attribute name="MP" value="SSM-108-L-SV" x="119.01" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MF" value="Samtec" x="119.01" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="DESCRIPTION" value=" 8 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="119.01" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="DRVMOT3_COM" library="SSM-108-L-SV" package="SAMTEC_SSM-108-L-SV" value="SSM-108-L-SV" x="119.01" y="57.28" smashed="yes" rot="R180">
 <attribute name="AVAILABILITY" value="In Stock" x="119.01" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DESCRIPTION" value=" 8 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="119.01" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="Samtec" x="119.01" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MP" value="SSM-108-L-SV" x="119.01" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="130.17" y="53.71" size="1.27" layer="25" rot="R180"/>
 <attribute name="PACKAGE" value="None" x="119.01" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="119.01" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-108-L-SV/?ref=eda" x="119.01" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="130.17" y="62.1" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="DRVMOT3_POW" library="SSM-108-L-SV" package="SAMTEC_SSM-108-L-SV" value="SSM-108-L-SV" x="119.01" y="44.58" rot="R180">
-<attribute name="MP" value="SSM-108-L-SV" x="119.01" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MF" value="Samtec" x="119.01" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="DESCRIPTION" value=" 8 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="119.01" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="DRVMOT3_POW" library="SSM-108-L-SV" package="SAMTEC_SSM-108-L-SV" value="SSM-108-L-SV" x="119.01" y="44.58" smashed="yes" rot="R180">
 <attribute name="AVAILABILITY" value="In Stock" x="119.01" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DESCRIPTION" value=" 8 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="119.01" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="Samtec" x="119.01" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MP" value="SSM-108-L-SV" x="119.01" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="130.17" y="41.01" size="1.27" layer="25" rot="R180"/>
 <attribute name="PACKAGE" value="None" x="119.01" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="119.01" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-108-L-SV/?ref=eda" x="119.01" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="130.17" y="49.4" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="DRVMOT4_COM" library="SSM-108-L-SV" package="SAMTEC_SSM-108-L-SV" value="SSM-108-L-SV" x="61.87" y="57.28" rot="R180">
-<attribute name="MP" value="SSM-108-L-SV" x="61.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MF" value="Samtec" x="61.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="DESCRIPTION" value=" 8 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="61.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="DRVMOT4_COM" library="SSM-108-L-SV" package="SAMTEC_SSM-108-L-SV" value="SSM-108-L-SV" x="61.87" y="57.28" smashed="yes" rot="R180">
 <attribute name="AVAILABILITY" value="In Stock" x="61.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DESCRIPTION" value=" 8 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="61.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="Samtec" x="61.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MP" value="SSM-108-L-SV" x="61.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="73.03" y="53.71" size="1.27" layer="25" rot="R180"/>
 <attribute name="PACKAGE" value="None" x="61.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="61.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-108-L-SV/?ref=eda" x="61.87" y="57.28" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="73.03" y="62.1" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="DRVMOT4_POW" library="SSM-108-L-SV" package="SAMTEC_SSM-108-L-SV" value="SSM-108-L-SV" x="61.87" y="44.58" rot="R180">
-<attribute name="MP" value="SSM-108-L-SV" x="61.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MF" value="Samtec" x="61.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="DESCRIPTION" value=" 8 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="61.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="DRVMOT4_POW" library="SSM-108-L-SV" package="SAMTEC_SSM-108-L-SV" value="SSM-108-L-SV" x="61.87" y="44.58" smashed="yes" rot="R180">
 <attribute name="AVAILABILITY" value="In Stock" x="61.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DESCRIPTION" value=" 8 Position Receptacle, Pass Through Connector 0.100 (2.54mm) Surface Mount Gold " x="61.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="Samtec" x="61.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MP" value="SSM-108-L-SV" x="61.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="73.03" y="41.01" size="1.27" layer="25" rot="R180"/>
 <attribute name="PACKAGE" value="None" x="61.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="61.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-108-L-SV/?ref=eda" x="61.87" y="44.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="73.03" y="49.4" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="MOT1" library="22-27-2041" package="HDRV4W64P254_100_4X1_1016X580H" value="22-27-2041" x="252.17" y="28.9">
-<attribute name="MANUFACTURER_PART_NUMBER" value="22-27-2041" x="252.17" y="28.9" size="1.778" layer="27" display="off"/>
+<element name="MOT1" library="22-27-2041" package="HDRV4W64P254_100_4X1_1016X580H" value="22-27-2041" x="252.17" y="28.9" smashed="yes">
 <attribute name="ARROW_PART_NUMBER" value="" x="252.17" y="28.9" size="1.778" layer="27" display="off"/>
-<attribute name="MOUSER_PART_NUMBER" value="" x="252.17" y="28.9" size="1.778" layer="27" display="off"/>
+<attribute name="ARROW_PRICE-STOCK" value="" x="252.17" y="28.9" size="1.778" layer="27" display="off"/>
 <attribute name="DESCRIPTION" value="Molex 22-27-2041 second source" x="252.17" y="28.9" size="1.778" layer="27" display="off"/>
 <attribute name="HEIGHT" value="mm" x="252.17" y="28.9" size="1.778" layer="27" display="off"/>
 <attribute name="MANUFACTURER_NAME" value="Bloggs Bits" x="252.17" y="28.9" size="1.778" layer="27" display="off"/>
-<attribute name="ARROW_PRICE-STOCK" value="" x="252.17" y="28.9" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER_PART_NUMBER" value="22-27-2041" x="252.17" y="28.9" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER_PART_NUMBER" value="" x="252.17" y="28.9" size="1.778" layer="27" display="off"/>
 <attribute name="MOUSER_PRICE-STOCK" value="" x="252.17" y="28.9" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="255.98" y="28.9" size="1.27" layer="25" align="center"/>
+<attribute name="VALUE" x="255.98" y="28.9" size="1.27" layer="27" align="center"/>
 </element>
-<element name="MOT2" library="22-27-2041" package="HDRV4W64P254_100_4X1_1016X580H" value="22-27-2041" x="182.74" y="27.9">
-<attribute name="MANUFACTURER_PART_NUMBER" value="22-27-2041" x="182.74" y="27.9" size="1.778" layer="27" display="off"/>
+<element name="MOT2" library="22-27-2041" package="HDRV4W64P254_100_4X1_1016X580H" value="22-27-2041" x="182.74" y="27.9" smashed="yes">
 <attribute name="ARROW_PART_NUMBER" value="" x="182.74" y="27.9" size="1.778" layer="27" display="off"/>
-<attribute name="MOUSER_PART_NUMBER" value="" x="182.74" y="27.9" size="1.778" layer="27" display="off"/>
+<attribute name="ARROW_PRICE-STOCK" value="" x="182.74" y="27.9" size="1.778" layer="27" display="off"/>
 <attribute name="DESCRIPTION" value="Molex 22-27-2041 second source" x="182.74" y="27.9" size="1.778" layer="27" display="off"/>
 <attribute name="HEIGHT" value="mm" x="182.74" y="27.9" size="1.778" layer="27" display="off"/>
 <attribute name="MANUFACTURER_NAME" value="Bloggs Bits" x="182.74" y="27.9" size="1.778" layer="27" display="off"/>
-<attribute name="ARROW_PRICE-STOCK" value="" x="182.74" y="27.9" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER_PART_NUMBER" value="22-27-2041" x="182.74" y="27.9" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER_PART_NUMBER" value="" x="182.74" y="27.9" size="1.778" layer="27" display="off"/>
 <attribute name="MOUSER_PRICE-STOCK" value="" x="182.74" y="27.9" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="186.55" y="27.9" size="1.27" layer="25" align="center"/>
+<attribute name="VALUE" x="186.55" y="27.9" size="1.27" layer="27" align="center"/>
 </element>
-<element name="MOT3" library="22-27-2041" package="HDRV4W64P254_100_4X1_1016X580H" value="22-27-2041" x="115.31" y="27.9">
-<attribute name="MANUFACTURER_PART_NUMBER" value="22-27-2041" x="115.31" y="27.9" size="1.778" layer="27" display="off"/>
+<element name="MOT3" library="22-27-2041" package="HDRV4W64P254_100_4X1_1016X580H" value="22-27-2041" x="115.31" y="27.9" smashed="yes">
 <attribute name="ARROW_PART_NUMBER" value="" x="115.31" y="27.9" size="1.778" layer="27" display="off"/>
-<attribute name="MOUSER_PART_NUMBER" value="" x="115.31" y="27.9" size="1.778" layer="27" display="off"/>
+<attribute name="ARROW_PRICE-STOCK" value="" x="115.31" y="27.9" size="1.778" layer="27" display="off"/>
 <attribute name="DESCRIPTION" value="Molex 22-27-2041 second source" x="115.31" y="27.9" size="1.778" layer="27" display="off"/>
 <attribute name="HEIGHT" value="mm" x="115.31" y="27.9" size="1.778" layer="27" display="off"/>
 <attribute name="MANUFACTURER_NAME" value="Bloggs Bits" x="115.31" y="27.9" size="1.778" layer="27" display="off"/>
-<attribute name="ARROW_PRICE-STOCK" value="" x="115.31" y="27.9" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER_PART_NUMBER" value="22-27-2041" x="115.31" y="27.9" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER_PART_NUMBER" value="" x="115.31" y="27.9" size="1.778" layer="27" display="off"/>
 <attribute name="MOUSER_PRICE-STOCK" value="" x="115.31" y="27.9" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="119.12" y="27.9" size="1.27" layer="25" align="center"/>
+<attribute name="VALUE" x="119.12" y="27.9" size="1.27" layer="27" align="center"/>
 </element>
-<element name="MOT4" library="22-27-2041" package="HDRV4W64P254_100_4X1_1016X580H" value="22-27-2041" x="57.88" y="27.9">
-<attribute name="MANUFACTURER_PART_NUMBER" value="22-27-2041" x="57.88" y="27.9" size="1.778" layer="27" display="off"/>
+<element name="MOT4" library="22-27-2041" package="HDRV4W64P254_100_4X1_1016X580H" value="22-27-2041" x="57.88" y="27.9" smashed="yes">
 <attribute name="ARROW_PART_NUMBER" value="" x="57.88" y="27.9" size="1.778" layer="27" display="off"/>
-<attribute name="MOUSER_PART_NUMBER" value="" x="57.88" y="27.9" size="1.778" layer="27" display="off"/>
+<attribute name="ARROW_PRICE-STOCK" value="" x="57.88" y="27.9" size="1.778" layer="27" display="off"/>
 <attribute name="DESCRIPTION" value="Molex 22-27-2041 second source" x="57.88" y="27.9" size="1.778" layer="27" display="off"/>
 <attribute name="HEIGHT" value="mm" x="57.88" y="27.9" size="1.778" layer="27" display="off"/>
 <attribute name="MANUFACTURER_NAME" value="Bloggs Bits" x="57.88" y="27.9" size="1.778" layer="27" display="off"/>
-<attribute name="ARROW_PRICE-STOCK" value="" x="57.88" y="27.9" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER_PART_NUMBER" value="22-27-2041" x="57.88" y="27.9" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER_PART_NUMBER" value="" x="57.88" y="27.9" size="1.778" layer="27" display="off"/>
 <attribute name="MOUSER_PRICE-STOCK" value="" x="57.88" y="27.9" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="61.69" y="27.9" size="1.27" layer="25" align="center"/>
+<attribute name="VALUE" x="61.69" y="27.9" size="1.27" layer="27" align="center"/>
 </element>
-<element name="MOTOR5_SERVO" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="12.04" y="32.15" rot="R180">
-<attribute name="MP" value="SSM-103-S-SV" x="12.04" y="32.15" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MF" value="Samtec" x="12.04" y="32.15" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="12.04" y="32.15" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="MOTOR5_SERVO" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="12.04" y="32.15" smashed="yes" rot="R180">
 <attribute name="AVAILABILITY" value="In Stock" x="12.04" y="32.15" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="12.04" y="32.15" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="Samtec" x="12.04" y="32.15" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MP" value="SSM-103-S-SV" x="12.04" y="32.15" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="16.85" y="28.58" size="1.27" layer="25" rot="R180"/>
 <attribute name="PACKAGE" value="None" x="12.04" y="32.15" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="12.04" y="32.15" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-103-S-SV/?ref=eda" x="12.04" y="32.15" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="16.85" y="36.97" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="STOP_SENSOR1" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="22.93" y="169.01" rot="R90">
-<attribute name="MP" value="SSM-103-S-SV" x="22.93" y="169.01" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MF" value="Samtec" x="22.93" y="169.01" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="22.93" y="169.01" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="STOP_SENSOR1" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="22.93" y="169.01" smashed="yes" rot="R90">
 <attribute name="AVAILABILITY" value="In Stock" x="22.93" y="169.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="22.93" y="169.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="Samtec" x="22.93" y="169.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MP" value="SSM-103-S-SV" x="22.93" y="169.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="19.36" y="164.2" size="1.27" layer="25" rot="R90"/>
 <attribute name="PACKAGE" value="None" x="22.93" y="169.01" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PRICE" value="None" x="22.93" y="169.01" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-103-S-SV/?ref=eda" x="22.93" y="169.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="27.75" y="164.2" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="STOP_SENSOR2" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="22.93" y="144.01" rot="R90">
-<attribute name="MP" value="SSM-103-S-SV" x="22.93" y="144.01" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MF" value="Samtec" x="22.93" y="144.01" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="22.93" y="144.01" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="STOP_SENSOR2" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="22.93" y="144.01" smashed="yes" rot="R90">
 <attribute name="AVAILABILITY" value="In Stock" x="22.93" y="144.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="22.93" y="144.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="Samtec" x="22.93" y="144.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MP" value="SSM-103-S-SV" x="22.93" y="144.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="19.36" y="139.2" size="1.27" layer="25" rot="R90"/>
 <attribute name="PACKAGE" value="None" x="22.93" y="144.01" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PRICE" value="None" x="22.93" y="144.01" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-103-S-SV/?ref=eda" x="22.93" y="144.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="27.75" y="139.2" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="STOP_SENSOR3" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="22.93" y="119.01" rot="R90">
-<attribute name="MP" value="SSM-103-S-SV" x="22.93" y="119.01" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MF" value="Samtec" x="22.93" y="119.01" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="22.93" y="119.01" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="STOP_SENSOR3" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="22.93" y="119.01" smashed="yes" rot="R90">
 <attribute name="AVAILABILITY" value="In Stock" x="22.93" y="119.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="22.93" y="119.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="Samtec" x="22.93" y="119.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MP" value="SSM-103-S-SV" x="22.93" y="119.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="19.36" y="114.2" size="1.27" layer="25" rot="R90"/>
 <attribute name="PACKAGE" value="None" x="22.93" y="119.01" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PRICE" value="None" x="22.93" y="119.01" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-103-S-SV/?ref=eda" x="22.93" y="119.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="27.75" y="114.2" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="STOP_SENSOR4" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="22.93" y="94.01" rot="R90">
-<attribute name="MP" value="SSM-103-S-SV" x="22.93" y="94.01" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MF" value="Samtec" x="22.93" y="94.01" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="22.93" y="94.01" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="STOP_SENSOR4" library="SSM-103-S-SV" package="SAMTEC_SSM-103-S-SV" value="SSM-103-S-SV" x="22.93" y="94.01" smashed="yes" rot="R90">
 <attribute name="AVAILABILITY" value="In Stock" x="22.93" y="94.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="DESCRIPTION" value=" 3 Position Receptacle, Bottom Entry Connector 0.100 (2.54mm) Surface Mount Gold " x="22.93" y="94.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="Samtec" x="22.93" y="94.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MP" value="SSM-103-S-SV" x="22.93" y="94.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="19.36" y="89.2" size="1.27" layer="25" rot="R90"/>
 <attribute name="PACKAGE" value="None" x="22.93" y="94.01" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PRICE" value="None" x="22.93" y="94.01" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SSM-103-S-SV/?ref=eda" x="22.93" y="94.01" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="27.75" y="89.2" size="1.27" layer="27" rot="R90"/>
 </element>
 </elements>
 <signals>
@@ -1900,103 +1978,82 @@ design rules under a new name.</description>
 <via x="269" y="46.1825" extent="1-16" drill="0.8" diameter="1.27"/>
 </signal>
 <signal name="SCK/TX">
-<contactref element="CAM" pad="02"/>
 <contactref element="CN7" pad="02"/>
-<wire x1="263.4225" y1="164.69" x2="272" y2="164.69" width="0.3048" layer="1"/>
-<wire x1="272" y1="164.69" x2="272" y2="176" width="0.3048" layer="1"/>
-<wire x1="272" y1="176" x2="94" y2="176" width="0.3048" layer="16"/>
-<wire x1="99.075" y1="162.48" x2="94" y2="162.48" width="0.3048" layer="1"/>
-<wire x1="94" y1="162.48" x2="94" y2="176" width="0.3048" layer="16"/>
-<via x="94" y="162.48" extent="1-16" drill="0.8" diameter="1.27"/>
-<via x="272" y="176" extent="1-16" drill="0.8" diameter="1.27"/>
+<contactref element="CAM" pad="01"/>
+<wire x1="99.075" y1="162.48" x2="98.52" y2="162.48" width="0.3048" layer="1"/>
+<wire x1="98.52" y1="162.48" x2="96" y2="165" width="0.3048" layer="1"/>
+<wire x1="96" y1="165" x2="96" y2="170" width="0.3048" layer="1"/>
+<wire x1="254.4475" y1="173" x2="260.2175" y2="167.23" width="0.3048" layer="1"/>
+<wire x1="96" y1="170" x2="99" y2="173" width="0.3048" layer="1"/>
+<wire x1="99" y1="173" x2="254.4475" y2="173" width="0.3048" layer="1"/>
 </signal>
 <signal name="MOSI">
-<contactref element="CAM" pad="01"/>
 <contactref element="CN7" pad="04"/>
-<wire x1="260.2175" y1="167.23" x2="245" y2="167.23" width="0.3048" layer="1"/>
-<wire x1="245" y1="167.23" x2="245" y2="171" width="0.3048" layer="1"/>
-<wire x1="245" y1="171" x2="160" y2="171" width="0.3048" layer="1"/>
-<wire x1="160" y1="171" x2="160" y2="173" width="0.3048" layer="1"/>
-<wire x1="160" y1="173" x2="147" y2="173" width="0.3048" layer="16"/>
-<wire x1="147" y1="173" x2="147" y2="170.23" width="0.3048" layer="1"/>
-<wire x1="147" y1="170.23" x2="90" y2="170.23" width="0.3048" layer="1"/>
-<wire x1="90" y1="170.23" x2="90" y2="160" width="0.3048" layer="1"/>
-<wire x1="90" y1="160" x2="99.075" y2="160" width="0.3048" layer="1"/>
 <wire x1="99.075" y1="160" x2="99.075" y2="159.94" width="0.3048" layer="1"/>
-<via x="160" y="173" extent="1-16" drill="0.8" diameter="1.27"/>
-<via x="147" y="173" extent="1-16" drill="0.8" diameter="1.27"/>
+<contactref element="CAM" pad="02"/>
+<wire x1="263.4225" y1="164.69" x2="265.69" y2="164.69" width="0.3048" layer="1"/>
+<wire x1="265.69" y1="164.69" x2="266" y2="165" width="0.3048" layer="1"/>
+<wire x1="266" y1="165" x2="266" y2="170" width="0.3048" layer="1"/>
+<wire x1="266" y1="170" x2="259" y2="177" width="0.3048" layer="1"/>
+<wire x1="259" y1="177" x2="99" y2="177" width="0.3048" layer="1"/>
+<wire x1="99" y1="177" x2="93" y2="171" width="0.3048" layer="1"/>
+<wire x1="93" y1="171" x2="93" y2="162" width="0.3048" layer="1"/>
+<wire x1="93" y1="162" x2="95" y2="160" width="0.3048" layer="1"/>
+<wire x1="95" y1="160" x2="99.075" y2="160" width="0.3048" layer="1"/>
 </signal>
 <signal name="STOP_SENSOR4">
 <contactref element="STOP_SENSOR4" pad="02"/>
 <contactref element="CN7" pad="28"/>
 <wire x1="24.5325" y1="94.01" x2="57" y2="94.01" width="0.3048" layer="1"/>
-<wire x1="57" y1="94.01" x2="57" y2="129" width="0.3048" layer="1"/>
-<wire x1="99.075" y1="129.46" x2="77" y2="129.46" width="0.3048" layer="1"/>
-<wire x1="77" y1="129.46" x2="77" y2="128" width="0.3048" layer="1"/>
-<wire x1="77" y1="128" x2="73" y2="128" width="0.3048" layer="16"/>
-<wire x1="73" y1="128" x2="73" y2="129" width="0.3048" layer="1"/>
-<wire x1="73" y1="129" x2="57" y2="129" width="0.3048" layer="1"/>
-<via x="77" y="128" extent="1-16" drill="0.8" diameter="1.27"/>
-<via x="73" y="128" extent="1-16" drill="0.8" diameter="1.27"/>
+<wire x1="57" y1="129" x2="57" y2="94.01" width="0.3048" layer="1"/>
+<wire x1="57.46" y1="129.46" x2="57" y2="129" width="0.3048" layer="1"/>
+<wire x1="99.075" y1="129.46" x2="57.46" y2="129.46" width="0.3048" layer="1"/>
 </signal>
 <signal name="STOP_SENSOR2">
 <contactref element="STOP_SENSOR2" pad="02"/>
 <contactref element="CN7" pad="24"/>
-<wire x1="24.5325" y1="144.01" x2="49" y2="144.01" width="0.3048" layer="1"/>
-<wire x1="49" y1="144.01" x2="49" y2="134" width="0.3048" layer="1"/>
-<wire x1="99.075" y1="134.54" x2="77" y2="134.54" width="0.3048" layer="1"/>
-<wire x1="77" y1="134.54" x2="77" y2="135" width="0.3048" layer="1"/>
-<wire x1="77" y1="135" x2="73" y2="135" width="0.3048" layer="16"/>
-<wire x1="73" y1="135" x2="73" y2="134" width="0.3048" layer="1"/>
-<wire x1="73" y1="134" x2="49" y2="134" width="0.3048" layer="1"/>
-<via x="77" y="135" extent="1-16" drill="0.8" diameter="1.27"/>
-<via x="73" y="135" extent="1-16" drill="0.8" diameter="1.27"/>
+<wire x1="49" y1="144.01" x2="24.5325" y2="144.01" width="0.3048" layer="1"/>
+<wire x1="49.46" y1="134.54" x2="49" y2="135" width="0.3048" layer="1"/>
+<wire x1="49" y1="135" x2="49" y2="144.01" width="0.3048" layer="1"/>
+<wire x1="99.075" y1="134.54" x2="49.46" y2="134.54" width="0.3048" layer="1"/>
 </signal>
 <signal name="SDA/MISO/RX">
-<contactref element="CAM" pad="03"/>
 <contactref element="CN7" pad="01"/>
-<wire x1="260.2175" y1="162.15" x2="190" y2="162.15" width="0.3048" layer="1"/>
-<wire x1="190" y1="162.15" x2="190" y2="166" width="0.3048" layer="1"/>
-<wire x1="190" y1="166" x2="113" y2="166" width="0.3048" layer="16"/>
-<wire x1="104.725" y1="162.48" x2="113" y2="162.48" width="0.3048" layer="1"/>
-<wire x1="113" y1="162.48" x2="113" y2="166" width="0.3048" layer="1"/>
-<via x="190" y="166" extent="1-16" drill="0.8" diameter="1.27"/>
-<via x="113" y="166" extent="1-16" drill="0.8" diameter="1.27"/>
+<contactref element="CAM" pad="03"/>
+<wire x1="104.725" y1="162.48" x2="111.245" y2="169" width="0.3048" layer="1"/>
+<wire x1="249" y1="169" x2="256" y2="162" width="0.3048" layer="1"/>
+<wire x1="256" y1="162" x2="260.6576" y2="162" width="0.3048" layer="1"/>
+<wire x1="260.6576" y1="162" x2="260.5076" y2="162.15" width="0.3048" layer="1"/>
+<wire x1="260.5076" y1="162.15" x2="260.2175" y2="162.15" width="0.3048" layer="1"/>
+<wire x1="111.245" y1="169" x2="249" y2="169" width="0.3048" layer="1"/>
 </signal>
 <signal name="STOP_SENSOR1">
 <contactref element="STOP_SENSOR1" pad="02"/>
 <contactref element="CN7" pad="22"/>
 <wire x1="24.5325" y1="169.01" x2="57" y2="169.01" width="0.3048" layer="1"/>
 <wire x1="57" y1="169.01" x2="57" y2="137" width="0.3048" layer="1"/>
-<wire x1="99.075" y1="137.08" x2="77" y2="137.08" width="0.3048" layer="1"/>
-<wire x1="77" y1="137.08" x2="77" y2="138" width="0.3048" layer="1"/>
-<via x="77" y="138" extent="1-16" drill="0.8" diameter="1.27"/>
-<wire x1="77" y1="138" x2="73" y2="138" width="0.3048" layer="16"/>
-<via x="73" y="138" extent="1-16" drill="0.8" diameter="1.27"/>
-<wire x1="73" y1="138" x2="73" y2="137" width="0.3048" layer="1"/>
-<wire x1="73" y1="137" x2="57" y2="137" width="0.3048" layer="1"/>
+<wire x1="77" y1="137.08" x2="99.075" y2="137.08" width="0.3048" layer="1"/>
+<wire x1="76.92" y1="137" x2="77" y2="137.08" width="0.3048" layer="1"/>
+<wire x1="57" y1="137" x2="76.92" y2="137" width="0.3048" layer="1"/>
 </signal>
 <signal name="STOP_SENSOR3">
 <contactref element="STOP_SENSOR3" pad="02"/>
 <contactref element="CN7" pad="26"/>
 <wire x1="24.5325" y1="119.01" x2="49" y2="119.01" width="0.3048" layer="1"/>
-<wire x1="49" y1="119.01" x2="49" y2="132" width="0.3048" layer="1"/>
-<wire x1="99.075" y1="132" x2="77" y2="132" width="0.3048" layer="1"/>
-<wire x1="77" y1="132" x2="77" y2="131" width="0.3048" layer="1"/>
-<wire x1="77" y1="131" x2="73" y2="131" width="0.3048" layer="16"/>
-<wire x1="73" y1="131" x2="73" y2="132" width="0.3048" layer="1"/>
-<wire x1="73" y1="132" x2="49" y2="132" width="0.3048" layer="1"/>
-<via x="77" y="131" extent="1-16" drill="0.8" diameter="1.27"/>
-<via x="73" y="131" extent="1-16" drill="0.8" diameter="1.27"/>
+<wire x1="49" y1="132" x2="49" y2="119.01" width="0.3048" layer="1"/>
+<wire x1="99.075" y1="132" x2="49" y2="132" width="0.3048" layer="1"/>
 </signal>
 <signal name="CS">
-<contactref element="CAM" pad="04"/>
 <contactref element="CN10" pad="02"/>
-<wire x1="160.075" y1="162.48" x2="154" y2="162.48" width="0.3048" layer="1"/>
-<wire x1="154" y1="162.48" x2="154" y2="180" width="0.3048" layer="1"/>
-<wire x1="263.4225" y1="159.61" x2="275" y2="159.61" width="0.3048" layer="1"/>
-<wire x1="275" y1="159.61" x2="275" y2="180" width="0.3048" layer="1"/>
-<wire x1="275" y1="180" x2="154" y2="180" width="0.3048" layer="1"/>
+<contactref element="CAM" pad="05"/>
+<wire x1="160.075" y1="162.48" x2="157.52" y2="162.48" width="0.3048" layer="1"/>
+<wire x1="157.52" y1="162.48" x2="157" y2="163" width="0.3048" layer="1"/>
+<wire x1="157" y1="163" x2="157" y2="165" width="0.3048" layer="1"/>
+<wire x1="157" y1="165" x2="158" y2="166" width="0.3048" layer="1"/>
+<wire x1="158" y1="166" x2="245" y2="166" width="0.3048" layer="1"/>
+<wire x1="245" y1="166" x2="254" y2="157" width="0.3048" layer="1"/>
+<wire x1="254" y1="157" x2="260.1475" y2="157" width="0.3048" layer="1"/>
+<wire x1="260.1475" y1="157" x2="260.2175" y2="157.07" width="0.3048" layer="1"/>
 </signal>
 <signal name="MOTOR4_READY">
 <contactref element="DRVMOT4_COM" pad="06"/>
@@ -2047,11 +2104,14 @@ design rules under a new name.</description>
 <via x="127.9" y="69" extent="1-16" drill="0.8" diameter="1.27"/>
 </signal>
 <signal name="SCL">
-<contactref element="CAM" pad="05"/>
 <contactref element="CN10" pad="01"/>
-<wire x1="260.2175" y1="157.07" x2="175" y2="157.07" width="0.3048" layer="1"/>
-<wire x1="165.725" y1="162.48" x2="175" y2="162.48" width="0.3048" layer="1"/>
-<wire x1="175" y1="162.48" x2="175" y2="157.07" width="0.3048" layer="1"/>
+<contactref element="CAM" pad="04"/>
+<wire x1="165.725" y1="162.48" x2="242.52" y2="162.48" width="0.3048" layer="1"/>
+<wire x1="242.52" y1="162.48" x2="253" y2="152" width="0.3048" layer="1"/>
+<wire x1="253" y1="152" x2="265" y2="152" width="0.3048" layer="1"/>
+<wire x1="265" y1="152" x2="269" y2="156" width="0.3048" layer="1"/>
+<wire x1="269" y1="156" x2="265.39" y2="159.61" width="0.3048" layer="1"/>
+<wire x1="265.39" y1="159.61" x2="263.4225" y2="159.61" width="0.3048" layer="1"/>
 </signal>
 <signal name="MOTOR1_DIR">
 <contactref element="DRVMOT1_COM" pad="08"/>
@@ -2128,16 +2188,14 @@ design rules under a new name.</description>
 <wire x1="104.725" y1="157.4" x2="129" y2="157.4" width="0.3048" layer="1"/>
 <wire x1="129" y1="157.4" x2="129" y2="107" width="0.3048" layer="1"/>
 <wire x1="129" y1="107" x2="75" y2="107" width="0.3048" layer="16"/>
-<wire x1="75" y1="107" x2="75" y2="179" width="0.3048" layer="1"/>
-<wire x1="75" y1="179" x2="16" y2="179" width="0.3048" layer="1"/>
 <wire x1="21.3275" y1="171.55" x2="16" y2="171.55" width="0.3048" layer="1"/>
-<wire x1="16" y1="171.55" x2="16" y2="179" width="0.3048" layer="1"/>
 <wire x1="21.3275" y1="146.55" x2="16" y2="146.55" width="0.3048" layer="1"/>
 <wire x1="16" y1="146.55" x2="16" y2="171.55" width="0.3048" layer="1"/>
 <wire x1="21.3275" y1="121.55" x2="16" y2="121.55" width="0.3048" layer="1"/>
 <wire x1="16" y1="121.55" x2="16" y2="146.55" width="0.3048" layer="1"/>
 <wire x1="21.3275" y1="96.55" x2="16" y2="96.55" width="0.3048" layer="1"/>
-<wire x1="16" y1="96.55" x2="16" y2="121.55" width="0.3048" layer="1"/>
+<wire x1="16" y1="96.55" x2="16" y2="102" width="0.3048" layer="1"/>
+<wire x1="16" y1="102" x2="16" y2="121.55" width="0.3048" layer="1"/>
 <wire x1="75" y1="107" x2="75" y2="84" width="0.3048" layer="1"/>
 <wire x1="55.52" y1="84" x2="40" y2="84" width="0.3048" layer="1"/>
 <wire x1="40" y1="84" x2="39.2" y2="84" width="0.3048" layer="1"/>
@@ -2148,7 +2206,7 @@ design rules under a new name.</description>
 <wire x1="75" y1="84" x2="97.44" y2="84" width="0.3048" layer="1"/>
 <wire x1="97.44" y1="84" x2="97.44" y2="70.1825" width="0.3048" layer="1"/>
 <wire x1="5" y1="44.33" x2="5" y2="84" width="0.3048" layer="1"/>
-<wire x1="5" y1="84" x2="40" y2="84" width="0.3048" layer="1"/>
+<wire x1="5" y1="84" x2="39.2" y2="84" width="0.3048" layer="1"/>
 <wire x1="10.83" y1="44.33" x2="5" y2="44.33" width="0.3048" layer="1"/>
 <wire x1="5" y1="44.33" x2="5" y2="30" width="0.3048" layer="1"/>
 <wire x1="5" y1="30" x2="9.5" y2="30" width="0.3048" layer="1"/>
@@ -2198,6 +2256,8 @@ design rules under a new name.</description>
 <wire x1="254.6" y1="63" x2="254.6" y2="58.8825" width="0.3048" layer="1"/>
 <via x="129" y="107" extent="1-16" drill="0.8" diameter="1.27"/>
 <via x="75" y="107" extent="1-16" drill="0.8" diameter="1.27"/>
+<wire x1="5" y1="84" x2="5" y2="91" width="0.3048" layer="1"/>
+<wire x1="5" y1="91" x2="16" y2="102" width="0.3048" layer="1"/>
 </signal>
 <signal name="MOTOR4_STEP">
 <contactref element="DRVMOT4_COM" pad="07"/>
@@ -2489,6 +2549,13 @@ design rules under a new name.</description>
 <wire x1="252.06" y1="42.9775" x2="252.17" y2="28.9" width="0.3048" layer="1"/>
 </signal>
 </signals>
+<mfgpreviewcolors>
+<mfgpreviewcolor name="soldermaskcolor" color="0xC8008000"/>
+<mfgpreviewcolor name="silkscreencolor" color="0xFFFEFEFE"/>
+<mfgpreviewcolor name="backgroundcolor" color="0xFF282828"/>
+<mfgpreviewcolor name="coppercolor" color="0xFFFFBF00"/>
+<mfgpreviewcolor name="substratecolor" color="0xFF786E46"/>
+</mfgpreviewcolors>
 </board>
 </drawing>
 </eagle>
