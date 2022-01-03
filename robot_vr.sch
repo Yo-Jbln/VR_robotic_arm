@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="9.6.2">
+<eagle version="7.6.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
-<setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
@@ -4008,10 +4007,6 @@ In this library the device names are the same as the pin names of the symbols, t
 <part name="MOT1" library="22-27-2041" deviceset="22-27-2041" device=""/>
 <part name="CN10" library="SSM-119-L-DV" deviceset="SSM-119-L-DV" device=""/>
 <part name="SUPPLY5" library="supply2" deviceset="GND" device=""/>
-<part name="SUPPLY7" library="supply2" deviceset="GND" device=""/>
-<part name="SUPPLY8" library="supply2" deviceset="GND" device=""/>
-<part name="SUPPLY9" library="supply2" deviceset="GND" device=""/>
-<part name="SUPPLY10" library="supply2" deviceset="GND" device=""/>
 <part name="C2" library="rcl" deviceset="C-EU" device="C1206K" value="100uF"/>
 <part name="MOT2" library="22-27-2041" deviceset="22-27-2041" device=""/>
 <part name="SUPPLY1" library="supply2" deviceset="GND" device=""/>
@@ -4050,6 +4045,10 @@ In this library the device names are the same as the pin names of the symbols, t
 <part name="C5" library="rcl" deviceset="C-EU" device="C1206K" value="100uF"/>
 <part name="SUPPLY14" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY6" library="supply2" deviceset="GND" device=""/>
+<part name="SUPPLY15" library="supply2" deviceset="GND" device=""/>
+<part name="SUPPLY16" library="supply2" deviceset="GND" device=""/>
+<part name="SUPPLY17" library="supply2" deviceset="GND" device=""/>
+<part name="SUPPLY18" library="supply2" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4081,18 +4080,6 @@ In this library the device names are the same as the pin names of the symbols, t
 </instance>
 <instance part="SUPPLY5" gate="GND" x="142.24" y="-111.76" smashed="yes" rot="MR0">
 <attribute name="VALUE" x="144.145" y="-114.935" size="1.778" layer="96" rot="MR0"/>
-</instance>
-<instance part="SUPPLY7" gate="GND" x="101.6" y="-50.8" smashed="yes" rot="R180">
-<attribute name="VALUE" x="103.505" y="-47.625" size="1.778" layer="96" rot="R180"/>
-</instance>
-<instance part="SUPPLY8" gate="GND" x="35.56" y="-50.8" smashed="yes" rot="R180">
-<attribute name="VALUE" x="37.465" y="-47.625" size="1.778" layer="96" rot="R180"/>
-</instance>
-<instance part="SUPPLY9" gate="GND" x="-33.02" y="-50.8" smashed="yes" rot="R180">
-<attribute name="VALUE" x="-31.115" y="-47.625" size="1.778" layer="96" rot="R180"/>
-</instance>
-<instance part="SUPPLY10" gate="GND" x="-101.6" y="-50.8" smashed="yes" rot="R180">
-<attribute name="VALUE" x="-99.695" y="-47.625" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="C2" gate="G$1" x="50.8" y="-114.3" smashed="yes" rot="MR0">
 <attribute name="NAME" x="49.276" y="-113.919" size="1.778" layer="95" rot="MR0"/>
@@ -4237,27 +4224,23 @@ In this library the device names are the same as the pin names of the symbols, t
 <instance part="SUPPLY6" gate="GND" x="-35.56" y="50.8" smashed="yes" rot="R90">
 <attribute name="VALUE" x="-32.385" y="48.895" size="1.778" layer="96" rot="R90"/>
 </instance>
+<instance part="SUPPLY15" gate="GND" x="-96.52" y="-50.8" smashed="yes" rot="R180">
+<attribute name="VALUE" x="-94.615" y="-47.625" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="SUPPLY16" gate="GND" x="-27.94" y="-50.8" smashed="yes" rot="R180">
+<attribute name="VALUE" x="-26.035" y="-47.625" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="SUPPLY17" gate="GND" x="40.64" y="-50.8" smashed="yes" rot="R180">
+<attribute name="VALUE" x="42.545" y="-47.625" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="SUPPLY18" gate="GND" x="106.68" y="-50.8" smashed="yes" rot="R180">
+<attribute name="VALUE" x="108.585" y="-47.625" size="1.778" layer="96" rot="R180"/>
+</instance>
 </instances>
 <busses>
 </busses>
 <nets>
 <net name="GND" class="0">
-<segment>
-<pinref part="SUPPLY7" gate="GND" pin="GND"/>
-<pinref part="CAPTEUR1_COM" gate="G$1" pin="03"/>
-</segment>
-<segment>
-<pinref part="SUPPLY8" gate="GND" pin="GND"/>
-<pinref part="CAPTEUR2_COM" gate="G$1" pin="03"/>
-</segment>
-<segment>
-<pinref part="SUPPLY9" gate="GND" pin="GND"/>
-<pinref part="CAPTEUR3_COM" gate="G$1" pin="03"/>
-</segment>
-<segment>
-<pinref part="SUPPLY10" gate="GND" pin="GND"/>
-<pinref part="CAPTEUR4_COM" gate="G$1" pin="03"/>
-</segment>
 <segment>
 <pinref part="SUPPLY5" gate="GND" pin="GND"/>
 <pinref part="DRVMOT1_POW" gate="G$1" pin="08"/>
@@ -4302,6 +4285,22 @@ In this library the device names are the same as the pin names of the symbols, t
 <segment>
 <pinref part="CN7" gate="G$1" pin="07"/>
 <pinref part="SUPPLY6" gate="GND" pin="GND"/>
+</segment>
+<segment>
+<pinref part="CAPTEUR4_COM" gate="G$1" pin="01"/>
+<pinref part="SUPPLY15" gate="GND" pin="GND"/>
+</segment>
+<segment>
+<pinref part="CAPTEUR3_COM" gate="G$1" pin="01"/>
+<pinref part="SUPPLY16" gate="GND" pin="GND"/>
+</segment>
+<segment>
+<pinref part="CAPTEUR2_COM" gate="G$1" pin="01"/>
+<pinref part="SUPPLY17" gate="GND" pin="GND"/>
+</segment>
+<segment>
+<pinref part="CAPTEUR1_COM" gate="G$1" pin="01"/>
+<pinref part="SUPPLY18" gate="GND" pin="GND"/>
 </segment>
 </net>
 <net name="SCK/TX" class="0">
@@ -4602,26 +4601,6 @@ In this library the device names are the same as the pin names of the symbols, t
 <pinref part="DRVMOT4_COM" gate="G$1" pin="04"/>
 </segment>
 <segment>
-<wire x1="106.68" y1="-53.34" x2="106.68" y2="-38.1" width="0.1524" layer="91"/>
-<label x="106.68" y="-38.1" size="1.778" layer="95" rot="R90"/>
-<pinref part="CAPTEUR1_COM" gate="G$1" pin="01"/>
-</segment>
-<segment>
-<wire x1="40.64" y1="-53.34" x2="40.64" y2="-38.1" width="0.1524" layer="91"/>
-<label x="40.64" y="-38.1" size="1.778" layer="95" rot="R90"/>
-<pinref part="CAPTEUR2_COM" gate="G$1" pin="01"/>
-</segment>
-<segment>
-<wire x1="-27.94" y1="-53.34" x2="-27.94" y2="-38.1" width="0.1524" layer="91"/>
-<label x="-27.94" y="-38.1" size="1.778" layer="95" rot="R90"/>
-<pinref part="CAPTEUR3_COM" gate="G$1" pin="01"/>
-</segment>
-<segment>
-<wire x1="-96.52" y1="-53.34" x2="-96.52" y2="-38.1" width="0.1524" layer="91"/>
-<label x="-96.52" y="-38.1" size="1.778" layer="95" rot="R90"/>
-<pinref part="CAPTEUR4_COM" gate="G$1" pin="01"/>
-</segment>
-<segment>
 <pinref part="STOP_SENSOR1" gate="G$1" pin="01"/>
 <wire x1="-139.7" y1="58.42" x2="-127" y2="58.42" width="0.1524" layer="91"/>
 <label x="-137.16" y="58.42" size="1.778" layer="95"/>
@@ -4653,6 +4632,26 @@ In this library the device names are the same as the pin names of the symbols, t
 <pinref part="CN7" gate="G$1" pin="05"/>
 <wire x1="-38.1" y1="53.34" x2="-20.32" y2="53.34" width="0.1524" layer="91"/>
 <label x="-20.32" y="53.34" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="CAPTEUR4_COM" gate="G$1" pin="03"/>
+<wire x1="-101.6" y1="-53.34" x2="-101.6" y2="-38.1" width="0.1524" layer="91"/>
+<label x="-101.6" y="-38.1" size="1.778" layer="95" rot="R90"/>
+</segment>
+<segment>
+<pinref part="CAPTEUR3_COM" gate="G$1" pin="03"/>
+<wire x1="-33.02" y1="-53.34" x2="-33.02" y2="-38.1" width="0.1524" layer="91"/>
+<label x="-33.02" y="-38.1" size="1.778" layer="95" rot="R90"/>
+</segment>
+<segment>
+<pinref part="CAPTEUR2_COM" gate="G$1" pin="03"/>
+<wire x1="35.56" y1="-53.34" x2="35.56" y2="-38.1" width="0.1524" layer="91"/>
+<label x="35.56" y="-38.1" size="1.778" layer="95" rot="R90"/>
+</segment>
+<segment>
+<pinref part="CAPTEUR1_COM" gate="G$1" pin="03"/>
+<wire x1="101.6" y1="-53.34" x2="101.6" y2="-38.1" width="0.1524" layer="91"/>
+<label x="101.6" y="-38.1" size="1.778" layer="95" rot="R90"/>
 </segment>
 </net>
 <net name="MOTOR4_STEP" class="0">
@@ -4964,6 +4963,9 @@ In this library the device names are the same as the pin names of the symbols, t
 </nets>
 </sheet>
 </sheets>
+<errors>
+<approved hash="113,1,-140.598,-175.26,ALIM_MOT,,,,,"/>
+</errors>
 </schematic>
 </drawing>
 </eagle>
