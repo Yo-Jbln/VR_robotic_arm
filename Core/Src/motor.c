@@ -7,55 +7,6 @@ MotorState Motor4;
 MotorState Motor5;
 
 /*
-void PhaseConfig(char p,uint8_t State) {
-	switch (p) {
-		case 'A':
-			HAL_GPIO_WritePin(Motor_Phase_A, GPIO_PIN, State);
-			break;
-		case 'B':
-			HAL_GPIO_WritePin(Motor_Phase_A, GPIO_Pin, State);
-			break;
-		case 'C':
-			HAL_GPIO_WritePin(Motor_Phase_A, GPIO_Pin, State);
-			break;
-		case 'D':
-			HAL_GPIO_WritePin(Motor_Phase_A, GPIO_Pin, State);
-			break;
-		default:
-			break;
-	}
-}*/
-void MotorPhase(uint8_t n) {
-	switch (n) {
-	case 1:
-		PhaseConfig('A',1);
-		PhaseConfig('B',1);
-		PhaseConfig('C',1);
-		PhaseConfig('D',1);
-		break;
-	case 2:
-		PhaseConfig('A',1);
-		PhaseConfig('B',1);
-		PhaseConfig('C',1);
-		PhaseConfig('D',1);
-		break;
-	case 3:
-		PhaseConfig('A',1);
-		PhaseConfig('B',1);
-		PhaseConfig('C',1);
-		PhaseConfig('D',1);
-		break;
-	case 4:
-		PhaseConfig('A',1);
-		PhaseConfig('B',1);
-		PhaseConfig('C',1);
-		PhaseConfig('D',1);
-		break;
-	default:
-		break;
-	}
-}
-/*
 void pinStepSizeConfig(int M) {
 	switch(M) {
 	case 1:
@@ -176,11 +127,9 @@ void pinMotorReadyConfig(int M) {
 		if (Motor4.Ready==false) HAL_GPIO_WritePin(Motor4_Ready_GPIO_Port, Motor4_Ready_Pin, 0);
 		else HAL_GPIO_WritePin(Motor4_Ready_GPIO_Port, Motor4_Ready_Pin, 1);
 		break;
-	case 5:
-		if (Motor5.Ready==false) HAL_GPIO_WritePin(Motor5_Ready_GPIO_Port, Motor5_Ready_Pin, 0);
-		else HAL_GPIO_WritePin(Motor5_Ready_GPIO_Port, Motor5_Ready_Pin, 1);
-		break;
 	default:
+		sprintf((char *)uart_tx_buffer,"\r\nError pin Motor Config uknown");
+		HAL_UART_Transmit(&huart2, uart_tx_buffer, strlen(uart_tx_buffer), HAL_MAX_DELAY);
 		break;
 	}
 }
@@ -202,11 +151,9 @@ void pinSensConfig(int M) {
 		if (Motor4.Sens==false) HAL_GPIO_WritePin(Motor4_DIR_GPIO_Port, Motor4_DIR_Pin, 0);
 		else HAL_GPIO_WritePin(Motor4_DIR_GPIO_Port, Motor4_DIR_Pin, 1);
 		break;
-	case 5:
-		if (Motor5.Sens==false) HAL_GPIO_WritePin(Motor5_DIR_GPIO_Port, Motor5_DIR_Pin, 0);
-		else HAL_GPIO_WritePin(Motor5_DIR_GPIO_Port, Motor5_DIR_Pin, 1);
-		break;
 	default:
+		sprintf((char *)uart_tx_buffer,"\r\nError pin Sens Config unknown");
+		HAL_UART_Transmit(&huart2, uart_tx_buffer, strlen(uart_tx_buffer), HAL_MAX_DELAY);
 		break;
 	}
 }
@@ -219,26 +166,23 @@ void VitConfig(int M,int v) {
 		Motor1.htim.Instance->CCR1=50*Motor1.htim.Instance->ARR/100;
 		break;
 	case 2 :
-		fTim=v*Motor2.mStepRevo*Motor4.stepSize;
-		Motor4.htim.Instance->ARR=170000000/(17*fTim) -1;
-		Motor4.htim.Instance->CCR2=50*Motor1.htim.Instance->ARR/100;
+		fTim=v*Motor2.mStepRevo*Motor2.stepSize;
+		Motor2.htim.Instance->ARR=170000000/(17*fTim) -1;
+		Motor2.htim.Instance->CCR2=50*Motor2.htim.Instance->ARR/100;
 		break;
 	case 3 :
 		fTim=v*Motor3.mStepRevo*Motor3.stepSize;
-		Motor4.htim.Instance->ARR=170000000/(17*fTim) -1;
-		Motor4.htim.Instance->CCR2=50*Motor1.htim.Instance->ARR/100;
+		Motor3.htim.Instance->ARR=170000000/(17*fTim) -1;
+		Motor3.htim.Instance->CCR2=50*Motor3.htim.Instance->ARR/100;
 		break;
 	case 4 :
 		fTim=v*Motor4.mStepRevo*Motor4.stepSize;
 		Motor4.htim.Instance->ARR=170000000/(17*fTim) -1;
-		Motor4.htim.Instance->CCR2=50*Motor1.htim.Instance->ARR/100;
-		break;
-	case 5 :
-		fTim=v*Motor5.mStepRevo*Motor5.stepSize;
-		Motor4.htim.Instance->ARR=170000000/(17*fTim) -1;
-		Motor4.htim.Instance->CCR1=50*Motor1.htim.Instance->ARR/100;
+		Motor4.htim.Instance->CCR2=50*Motor4.htim.Instance->ARR/100;
 		break;
 	default:
+		sprintf((char *)uart_tx_buffer,"\r\nError vit config unkwon");
+		HAL_UART_Transmit(&huart2, uart_tx_buffer, strlen(uart_tx_buffer), HAL_MAX_DELAY);
 		break;
 	}
 }
@@ -261,10 +205,12 @@ void pwmMotor(int M) {
 		else HAL_TIM_PWM_Start_IT(&htim8,TIM_CHANNEL_2);
 		break;
 	case 5:
-		if (Motor5.Active==false) HAL_TIM_PWM_Stop_IT(&htim3, TIM_CHANNEL_1);
-		else HAL_TIM_PWM_Start_IT(&htim3, TIM_CHANNEL_1);
+		if (Motor5.Active==false) HAL_TIM_PWM_Stop_IT(&htim3, TIM_CHANNEL_2);
+		else HAL_TIM_PWM_Start_IT(&htim3, TIM_CHANNEL_2);
 		break;
 	default:
+		sprintf((char *)uart_tx_buffer,"\r\nError pwm config unkwon");
+		HAL_UART_Transmit(&huart2, uart_tx_buffer, strlen(uart_tx_buffer), HAL_MAX_DELAY);
 		break;
 	}
 }
@@ -298,10 +244,6 @@ void MotorConfig(char * M) {
 		pwmMotor(4);
 	}
 	else if (strcmp(M,"Motor5")==0)	{
-		//pinStepSizeConfig(5);
-		pinSensConfig(5);
-		pinMotorReadyConfig(5);
-		VitConfig(5,Motor5.vitesse);
 		pwmMotor(5);
 	}
 }
@@ -310,10 +252,10 @@ void MotorConfig(char * M) {
 void MotorInit() {
 	Motor1.mReduction=27;
 	Motor1.mStepRevo=200;
-	Motor1.htim=htim1;
+	Motor1.htim=htim4;
 	Motor1.stepSize=16;
 	Motor1.position=0;
-	Motor1.vitesse=20;
+	Motor1.vitesse=50;
 	MotorOrder("Motor1",true,false,false);
 	MotorConfig("Motor1");
 
@@ -322,38 +264,58 @@ void MotorInit() {
 	Motor2.htim=htim1;
 	Motor2.stepSize=16;
 	Motor2.position=0;
-	Motor2.vitesse=1;
-	MotorOrder("Motor2",true,false,false);
+	Motor2.vitesse=50;
+	MotorOrder("Motor2",true,true,false);
 	MotorConfig("Motor2");
 
-	Motor3.mReduction=1;
+	Motor3.mReduction=27;
 	Motor3.mStepRevo=200;
-	Motor3.htim=htim3;
+	Motor3.htim=htim2;
 	Motor3.stepSize=16;
 	Motor3.position=0;
-	Motor3.vitesse=10;
+	Motor3.vitesse=50;
 	MotorOrder("Motor3",true,false,false);
 	MotorConfig("Motor3");
 
 	Motor4.mReduction=1;
 	Motor4.mStepRevo=200;
-	Motor4.htim=htim3;
+	Motor4.htim=htim8;
 	Motor4.stepSize=16;
 	Motor4.position=0;
 	Motor4.vitesse=10;
-	MotorOrder("Motor4",true,false,false);
+	MotorOrder("Motor4",true,true,false);
 	MotorConfig("Motor4");
 
-	Motor5.mReduction=1;
-	Motor5.mStepRevo=200;
-	Motor5.htim=htim8;
-	Motor5.stepSize=16;
+	Motor5.htim=htim3;
 	Motor5.position=0;
-	Motor5.vitesse=10;
-	MotorOrder("Motor5",true,false,false);
+	MotorOrder("Motor5",true,true,false);
 	MotorConfig("Motor5");
 }
 
+void ServoPosition(int a) {
+	float Num=(float) a/180;;
+	if (a<0) Num=0.0;
+	if (a>180) Num=1.0;
+	float dPas=0.0018;
+	float dT=1.8;
+	float Tmin=0.6;
+	float CCR= (Num*dT+Tmin)/dPas +0.5;
+	Motor5.htim.Instance->CCR2= CCR/1;
+}
+void Pince(int a) {
+	switch (a) {
+	case 0:
+		ServoPosition(0);
+		break;
+	case 1:
+		ServoPosition(180);
+		break;
+	default:
+		sprintf((char *)uart_tx_buffer,"\r\nError position pince unkwon");
+		HAL_UART_Transmit(&huart2, uart_tx_buffer, strlen(uart_tx_buffer), HAL_MAX_DELAY);
+		break;
+	}
+}
 void MotorOrder(char * M,bool ready,bool active,bool sens) {
 	if (strcmp(M,"Motor1")==0)	{
 		Motor1.Ready=ready;
@@ -376,14 +338,32 @@ void MotorOrder(char * M,bool ready,bool active,bool sens) {
 		Motor4.Sens=sens;
 	}
 	else if (strcmp(M,"Motor5")==0)	{
-		Motor5.Ready=ready;
 		Motor5.Active=active;
 		Motor5.Sens=sens;
 	}
 }
 
 void MotorPosition(char * M,int p) {
+	if (strcmp(M,"Motor1")==0) {
+		if (Motor1.Sens) p*=-1;
+		Motor1.positionNext=Motor1.position+p*Motor1.stepSize;
+		Motor1.Active=true;
+		MotorCmd("Motor1");
+	}
+	if (strcmp(M,"Motor2")==0) {
+		if (Motor2.Sens) p*=-1;
+		Motor2.positionNext=Motor2.position+p*Motor2.stepSize;
+		Motor2.Active=true;
+		MotorCmd("Motor2");
+	}
+	if (strcmp(M,"Motor3")==0) {
+		if (Motor3.Sens) p*=-1;
+		Motor3.positionNext=Motor3.position+p*Motor3.stepSize;
+		Motor3.Active=true;
+		MotorCmd("Motor3");
+	}
 	if (strcmp(M,"Motor4")==0) {
+		if (Motor4.Sens) p*=-1;
 		Motor4.positionNext=Motor4.position+p*Motor4.stepSize;
 		Motor4.Active=true;
 		MotorCmd("Motor4");
@@ -391,8 +371,20 @@ void MotorPosition(char * M,int p) {
 }
 void MotorAngle(char * M,int a) {
 	int step;
+	if (strcmp(M,"Motor1")==0) {
+		step=a*Motor1.mReduction*Motor1.mStepRevo/3600;
+		MotorPosition(M,step);
+	}
+	if (strcmp(M,"Motor2")==0) {
+		step=a*83*Motor2.mReduction*Motor2.mStepRevo/36000;
+		MotorPosition(M,step);
+	}
+	if (strcmp(M,"Motor3")==0) {
+		step=a*Motor3.mReduction*Motor3.mStepRevo/3600;
+		MotorPosition(M,step);
+	}
 	if (strcmp(M,"Motor4")==0) {
-		step=Motor4.mStepRevo*360/a;
+		step=a*Motor4.mStepRevo/3600;
 		MotorPosition(M,step);
 	}
 }
@@ -414,4 +406,10 @@ void MotorCmd(char * M) {
 		MotorConfig(M);
 		pwmMotor(4);
 	}
+}
+void MotorCmdAll() {
+	MotorCmd("Motor1");
+	MotorCmd("Motor2");
+	MotorCmd("Motor3");
+	MotorCmd("Motor4");
 }

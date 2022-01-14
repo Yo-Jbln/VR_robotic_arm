@@ -1,6 +1,9 @@
 #include "stm32g4xx_hal.h"
 #include <stdbool.h>
 
+extern UART_HandleTypeDef huart2;
+extern char uart_tx_buffer[32];
+
 typedef struct {
 	uint8_t mReduction;
 	uint8_t mStepRevo;

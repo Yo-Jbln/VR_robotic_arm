@@ -22,6 +22,7 @@ extern char uart_rx_buffer[UART_RX_BUFFER_SIZE];
 extern char uart_tx_buffer[UART_TX_BUFFER_SIZE];
 extern char cmd[CMD_BUFFER_SIZE];
 extern int idxCmd;
+extern char CmdWaiting[10][6];
 
 extern UART_HandleTypeDef huart2;
 

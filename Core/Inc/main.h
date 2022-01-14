@@ -50,7 +50,6 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-extern TIM_HandleTypeDef htim8;
 extern UART_HandleTypeDef huart2;
 /* USER CODE END EM */
 
@@ -63,20 +62,23 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define Capteur_M5_Pin GPIO_PIN_0
-#define Capteur_M5_GPIO_Port GPIOC
-#define Capteur_M1_Pin GPIO_PIN_1
-#define Capteur_M1_GPIO_Port GPIOC
-#define Capteur_M2_Pin GPIO_PIN_2
-#define Capteur_M2_GPIO_Port GPIOC
-#define Capteur_M3_Pin GPIO_PIN_3
-#define Capteur_M3_GPIO_Port GPIOC
-#define Capteur_M4_Pin GPIO_PIN_4
-#define Capteur_M4_GPIO_Port GPIOA
-#define Motor5_Ready_Pin GPIO_PIN_5
-#define Motor5_Ready_GPIO_Port GPIOA
-#define Motor5_DIR_Pin GPIO_PIN_7
-#define Motor5_DIR_GPIO_Port GPIOA
+#define Stop_Sensor2_Pin GPIO_PIN_13
+#define Stop_Sensor2_GPIO_Port GPIOC
+#define Stop_Sensor2_EXTI_IRQn EXTI15_10_IRQn
+#define Stop_Sensor3_Pin GPIO_PIN_14
+#define Stop_Sensor3_GPIO_Port GPIOC
+#define Stop_Sensor3_EXTI_IRQn EXTI15_10_IRQn
+#define Stop_Sensor4_Pin GPIO_PIN_15
+#define Stop_Sensor4_GPIO_Port GPIOC
+#define Stop_Sensor4_EXTI_IRQn EXTI15_10_IRQn
+#define Current_Sensor4_Pin GPIO_PIN_1
+#define Current_Sensor4_GPIO_Port GPIOC
+#define Current_Sensor1_Pin GPIO_PIN_0
+#define Current_Sensor1_GPIO_Port GPIOA
+#define Current_Sensor2_Pin GPIO_PIN_1
+#define Current_Sensor2_GPIO_Port GPIOA
+#define Current_Sensor3_Pin GPIO_PIN_0
+#define Current_Sensor3_GPIO_Port GPIOB
 #define Motor1_Ready_Pin GPIO_PIN_12
 #define Motor1_Ready_GPIO_Port GPIOB
 #define Motor2_Ready_Pin GPIO_PIN_13
@@ -93,6 +95,9 @@ void Error_Handler(void);
 #define Motor3_Ready_GPIO_Port GPIOB
 #define Motor4_Ready_Pin GPIO_PIN_6
 #define Motor4_Ready_GPIO_Port GPIOB
+#define Stop_Sensor1_Pin GPIO_PIN_7
+#define Stop_Sensor1_GPIO_Port GPIOB
+#define Stop_Sensor1_EXTI_IRQn EXTI9_5_IRQn
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
