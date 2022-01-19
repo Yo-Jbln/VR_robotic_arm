@@ -3,6 +3,7 @@
   ******************************************************************************
   * @file           : main.c
   * @brief          : Main program body
+  * @author 		: COLONNETTE
   ******************************************************************************
   * @attention
   *
@@ -59,7 +60,8 @@ char esp_tx_buffer[32];
 char CmdWaiting[10][6];
 uint8_t idxByte=0;
 uint8_t idxCmdWaiting=0;
-uint8_t flag=0;
+uint8_t MsgFlag=0;
+uint8_t MsgFlagLoad=0;
 
 uint8_t Currentflag=0;
 int courant=0;
@@ -86,45 +88,78 @@ static void MX_TIM15_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+/**
+ * @param          :None
+ * @retval		   :None
+ * @brief          :Rençoit octet par octet, les morceaux de commande et les sauvegarde
+ */
 HAL_UART_RxCpltCallBack(UART_HandleTypeDef * uart) {
-	//sprintf((char *)CmdWaiting[0],"%x",esp_rx_buffer);
-	/*sprintf((char *)CmdWaiting[0][idxByte],"%x",esp_rx_buffer);
-	sprintf((char *)CmdWaiting[1][idxByte],"%s",esp_rx_buffer);
-	sprintf((char *)CmdWaiting[2][idxByte],"%d",esp_rx_buffer);*/
 	sprintf((char *)uart_tx_buffer,"%s",esp_rx_buffer);
 	HAL_UART_Transmit(&huart2, uart_tx_buffer, strlen(uart_tx_buffer), HAL_MAX_DELAY);
-	/*idxByte++;
-	if (idxByte==6) {
-		flag=1;
+
+	/*
+	sprintf((char *)CmdWaiting[idxCmdWaiting][idxByte],"%x",esp_rx_buffer);
+	if (idxByte==5) {
+		if (CmdWaiting[idxCmdWaiting][idxByte]=="OK")	MsgFlagLoad=1;
+		else idxByte=0;
+	}
+	else if (MsgFlagLoad==1) {
+		idxCmdWaiting++;
 		idxByte=0;
+	}
+	else {
+		idxByte++;
+		if (idxByte==5) {
+			MsgFlag=1;
+		}
 	}*/
+
 	HAL_UART_Receive_IT(&huart1, esp_rx_buffer, 4);
 }
+/**
+ * @param          :None
+ * @retval		   :None
+ * @brief          :Renvoit la commande reçue à valider d'un uart à l'autre et affiche la dernière commande validé
+ */
 void Response() {
-	flag=0;
-	/*sprintf((char *)esp_tx_buffer,"%s","O");
-	HAL_UART_Transmit(&huart1, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);*/
+	if (MsgFlag==1) {
+		MsgFlag=0;
+		/*sprintf((char *)esp_tx_buffer,"%s","CmdWaiting[idxCmdWaiting]");
+		HAL_UART_Transmit(&huart1, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);*/
 
-	sprintf((char *)esp_tx_buffer,"\r\nCmd reçu en hexa ");
-	HAL_UART_Transmit(&huart2, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);
-	sprintf((char *)esp_tx_buffer,"%x %x %x %x %x %x ",CmdWaiting[0][0],CmdWaiting[0][1],CmdWaiting[0][2],CmdWaiting[0][3],CmdWaiting[0][4],CmdWaiting[0][5]);
-	HAL_UART_Transmit(&huart2, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);
+		HAL_UART_Receive_IT(&huart1, esp_rx_buffer, 4);
+	}
+	else if (MsgFlagLoad==1) {
+		MsgFlagLoad=0;
+		sprintf((char *)esp_tx_buffer,"\r\nCmd reçu en hexa ");
+		HAL_UART_Transmit(&huart2, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);
+		sprintf((char *)esp_tx_buffer,"%x %x %x %x %x %x ",CmdWaiting[0][0],CmdWaiting[0][1],CmdWaiting[0][2],CmdWaiting[0][3],CmdWaiting[0][4],CmdWaiting[0][5]);
+		HAL_UART_Transmit(&huart2, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);
 
-	sprintf((char *)esp_tx_buffer,"\r\nCmd reçu en string ");
-	HAL_UART_Transmit(&huart2, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);
-	sprintf((char *)esp_tx_buffer,"%s %s %s %s %s %s ",CmdWaiting[1][0],CmdWaiting[1][1],CmdWaiting[1][2],CmdWaiting[1][3],CmdWaiting[1][4],CmdWaiting[1][5]);
-	HAL_UART_Transmit(&huart2, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);
+		sprintf((char *)esp_tx_buffer,"\r\nCmd reçu en string ");
+		HAL_UART_Transmit(&huart2, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);
+		sprintf((char *)esp_tx_buffer,"%s %s %s %s %s %s ",CmdWaiting[1][0],CmdWaiting[1][1],CmdWaiting[1][2],CmdWaiting[1][3],CmdWaiting[1][4],CmdWaiting[1][5]);
+		HAL_UART_Transmit(&huart2, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);
 
-	sprintf((char *)esp_tx_buffer,"\r\nCmd reçu en deci ");
-	HAL_UART_Transmit(&huart2, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);
-	sprintf((char *)esp_tx_buffer,"%d %d %d %d %d %d ",CmdWaiting[2][0],CmdWaiting[2][1],CmdWaiting[2][2],CmdWaiting[2][3],CmdWaiting[2][4],CmdWaiting[2][5]);
-	HAL_UART_Transmit(&huart2, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);
+		sprintf((char *)esp_tx_buffer,"\r\nCmd reçu en deci ");
+		HAL_UART_Transmit(&huart2, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);
+		sprintf((char *)esp_tx_buffer,"%d %d %d %d %d %d ",CmdWaiting[2][0],CmdWaiting[2][1],CmdWaiting[2][2],CmdWaiting[2][3],CmdWaiting[2][4],CmdWaiting[2][5]);
+		HAL_UART_Transmit(&huart2, esp_tx_buffer, strlen(esp_tx_buffer), HAL_MAX_DELAY);
+	}
 }
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
 	if (HAL_OK!=HAL_ADC_Start_DMA(&hadc1,ADC_Buff,ADC_Buff_SIZE)) Error_Handler();
 	Currentflag=1;
 }
+
+/**
+ * @param          :None
+ * @retval		   :None
+ * @brief          :Change les variables sauvegardant la moyenne des mesures de courant dès que le DMA à terminer
+ * @attention
+ * Cette fonction n'est pas encore opérationnelle
+ */
 void CurrentMeasure() {
 	if (Currentflag==1) {
 		courant=0;
@@ -137,10 +172,16 @@ void CurrentMeasure() {
 		Currentflag=0;
 	}
 }
-
+/**
+ * @param          :None
+ * @retval		   :None
+ * @brief          :Exécute les commandes dans l'ordre sauvegardé par le buffer de commande en attente
+ * @attention
+ * Cette fonction n'est pas encore optimisée
+ */
 void ExecCmd() {
 	while (idxCmdWaiting>0) {
-
+		//CprCommande(CmdWaiting[idxCmdWaiting]);
 		idxCmdWaiting--;
 	}
 }
@@ -187,7 +228,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
   if (HAL_OK!=HAL_ADCEx_Calibration_Start(&hadc1,ADC_SINGLE_ENDED)) Error_Handler();
   if (HAL_OK!=HAL_ADC_Start_DMA(&hadc1,ADC_Buff,ADC_Buff_SIZE)) Error_Handler();
-  //if (HAL_OK!=HAL_TIM_Base_Start(&htim)) Error_Handler();
+  //La calibration du timer15 déclenchant le DMA est à affiner
+  //if (HAL_OK!=HAL_TIM_Base_Start_IT(&htim15)) Error_Handler();
 
   Uartprint((char * ) starting,-1);
   Uartprint((char *) prompt,-1);
@@ -201,13 +243,10 @@ int main(void)
   while (1)
   {
 	  RunConsole();
-	  /*if(idxCmdWaiting!=0) {
-	      for (int i=0;i<idxCmdWaiting;i++) CprCommande(CmdWaiting[i]);
-		  idxCmdWaiting=0;
-	  }*/
-	  //MotorCmdAll();
-	  //if (flag==1) Response();
+	  HAL_UART_Receive_IT(&huart1, esp_rx_buffer,4);
+	  if (MsgFlag==1) Response();
 	  //CurrentMeasure();
+	  //ExecCmd();
 
     /* USER CODE END WHILE */
 

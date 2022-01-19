@@ -1,10 +1,9 @@
-/*
- * console.c
- *
- *  Created on: Oct 22, 2021
- * @Author: User
- * @file           : console.c
- * @brief          : fichier servant à la création de la console
+/**
+  ******************************************************************************
+  * @file           :console.c
+  * @brief          :fichier servant à la création de la console
+  * @author 		:COLONNETTE
+  ******************************************************************************
  */
 
 #include "console.h"
@@ -25,6 +24,11 @@ const uint8_t not_found[CMD_BUFFER_SIZE]={"\r\nCommande inconnue"};
 char backspace[] = " \b";
 
 
+/**
+ * @param          :s le pointeur vers la chaîne de caractère à afficher, a un nombre à afficher
+ * @retval		   :None
+ * @brief          :Affiche via l'uart des mots et des valeurs si désiré
+ */
 void Uartprint(char * s,int a){
 	if (a==-1) {
 		sprintf((char *)uart_tx_buffer,"%s",s);
@@ -35,7 +39,11 @@ void Uartprint(char * s,int a){
 		HAL_UART_Transmit(&huart2, uart_tx_buffer, strlen(s)+5, HAL_MAX_DELAY);
 	}
 }
-
+/**
+ * @param          :None
+ * @retval		   :None
+ * @brief          :Déclanche une interruption en cas d'entrée clavier
+ */
 void Uartreceive(){
 	HAL_UART_Receive_IT(&huart2, uart_rx_buffer, 1);
 }
@@ -44,6 +52,11 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
   it_uart_rx_ready=1;
 }
 
+/**
+ * @param          :None
+ * @retval		   :None
+ * @brief          :Renvoit le caractère entrée au clavier dans la console
+ */
 void echo(){
 	if(it_uart_rx_ready==1){
 		uart_tx_buffer[0]=uart_rx_buffer[0];
@@ -52,20 +65,25 @@ void echo(){
 	}
 }
 
+/**
+ * @param          :None
+ * @retval		   :None
+ * @brief          :Décrit le comportement de la console
+ */
 void RunConsole(){
 	Uartreceive();
 	if (it_uart_rx_ready==1) {
 		echo();
 		cmd[idxCmd++]=uart_rx_buffer[0];
-		if (uart_rx_buffer[0]=='\r') {
-			cmd[idxCmd-1]='\0';
-			if(CprCommande(cmd)){
+		if (uart_rx_buffer[0]=='\r') {			//Reception du caractère Entrée
+			cmd[idxCmd-1]='\0';					//Conversion des caractères en chaîne de caractère
+			if(CprCommande(cmd)){				//Comparaison avec une commande connue et exécution si correspondance
 				idxCmd=0;
 			}
 		}
-		else if (uart_rx_buffer[0]=='\b') {
-			if (idxCmd>0) {      //is there a char to delete?
-				idxCmd=idxCmd-2;          //remove it in buffer
+		else if (uart_rx_buffer[0]=='\b') {		//Reception du caractère Supp et suppression du caractère précédent s'il existe
+			if (idxCmd>0) {
+				idxCmd=idxCmd-2;
 				Uartprint(backspace,-1);
 			}
 		}
@@ -73,7 +91,13 @@ void RunConsole(){
 }
 
 
+/**
+ * @param          :c pointeur vers une chaîne de caractère
+ * @retval		   :None
+ * @brief          :Comparaison de c avec une commande connue parmi toutes celles définies ci après
+ */
 int CprCommande(char * c){
+	// state M : Commande renvoyant l'état d'un moteur M selon son MotorState
 	if (strncmp(c,"state",5)==0) {
 		if (strncmp(c+6,"1",1)==0) {
 			Uartprint("\r\nMotor1 State",Motor1.Ready);
@@ -117,6 +141,8 @@ int CprCommande(char * c){
 		}
 		Uartprint((char *) prompt,-1);
 	}
+
+	// ready M : Commande allumant le driver d'un moteur M le rendant commandable
 	else if (strncmp(c,"ready",5)==0) {
 		if (strncmp(c+6,"1",1)==0) MotorOrder("Motor1",true,false,false);
 		if (strncmp(c+6,"2",1)==0) MotorOrder("Motor2",true,false,false);
@@ -125,6 +151,7 @@ int CprCommande(char * c){
 		MotorCmdAll();
 		Uartprint((char *) prompt,-1);
 	}
+	// sleep M : Commande éteignant le driver d'un moteur M le rendant incommandable
 	else if (strncmp(c,"sleep",5)==0) {
 		if (strncmp(c+6,"1",1)==0) MotorOrder("Motor1",false,false,false);
 		if (strncmp(c+6,"2",1)==0) MotorOrder("Motor2",false,false,false);
@@ -133,6 +160,8 @@ int CprCommande(char * c){
 		MotorCmdAll();
 		Uartprint((char *) prompt,-1);
 	}
+
+	// on M : Commande activant l'horloge d'un moteur M, enclenchant sa rotation permanente
 	else if (strncmp(c,"on",2)==0) {
 		if (strncmp(c+3,"1",1)==0) {
 			MotorOrder("Motor1",true,true,false);
@@ -154,6 +183,7 @@ int CprCommande(char * c){
 		Uartprint((char *) prompt,-1);
 		return 1;
 	}
+	// off M : Commande désactivant l'horloge d'un moteur M, bloquant sa rotation
 	else if(strncmp(c,"off",3)==0) {
 		if (strncmp(c+4,"1",1)==0) {
 			MotorOrder("Motor1",true,false,false);
@@ -175,6 +205,8 @@ int CprCommande(char * c){
 		Uartprint((char *) prompt,-1);
 		return 1;
 	}
+
+	// vit M X : Commande changeant la vitesse X d'un moteur M
 	else if(strncmp(c,"vit",3)==0) {
 		if (strncmp(c+4,"1",1)==0) Motor1.vitesse=atoi(c+6);
 		if (strncmp(c+4,"2",1)==0) Motor2.vitesse=atoi(c+6);
@@ -185,6 +217,8 @@ int CprCommande(char * c){
 		Uartprint((char *) prompt,-1);
 		return 1;
 	}
+
+	// ang M X : Commande fesant tourner d'un angle X le moteur M
 	else if(strncmp(c,"ang",3)==0) {
 		if (strncmp(c+4,"1",1)==0) MotorAngle("Motor1",atoi(c+6));
 		if (strncmp(c+4,"2",1)==0) MotorAngle("Motor2",atoi(c+6));
@@ -195,6 +229,7 @@ int CprCommande(char * c){
 		Uartprint((char *) prompt,-1);
 		return 1;
 	}
+	// pos M X : Commande feant bouger de X step la position du moteur M
 	else if(strncmp(c,"pos",3)==0) {
 		if (strncmp(c+4,"1",1)==0) MotorPosition("Motor1",atoi(c+6));
 		if (strncmp(c+4,"2",1)==0) MotorPosition("Motor2",atoi(c+6));
@@ -205,6 +240,8 @@ int CprCommande(char * c){
 		Uartprint((char *) prompt,-1);
 		return 1;
 	}
+
+	// dir M X : Commande changeant le sens de rotation X d'un moteur M
 	else if(strncmp(c,"dir",3)==0) {
 		if (strncmp(c+4,"1",1)==0) {
 			MotorOrder("Motor1",true,false,atoi(c+6));
@@ -231,16 +268,20 @@ int CprCommande(char * c){
 		Uartprint((char *) prompt,-1);
 		return 1;
 	}
+
+	// ser X : Commande changeant l'angle de fermeture X de la pince
 	else if(strncmp(c,"ser",3)==0) {
 		ServoPosition(atoi(c+4));
 		Uartprint((char *) prompt,-1);
 		return 1;
 	}
+	// pin X : Commande fermant ou ouvrant la pince
 	else if(strncmp(c,"pin",3)==0) {
 		Pince(atoi(c+4));
 		Uartprint((char *) prompt,-1);
 		return 1;
 	}
+	/* Cmd de debuggage
 	else if(strncmp(c,"a",1)==0) {
 		if (strncmp(c+2,"1",1)==0) {
 			Uartprint("\r\nMotor1 pos    ",Motor1.position);
@@ -260,7 +301,7 @@ int CprCommande(char * c){
 		}
 		Uartprint((char *) prompt,-1);
 		return 1;
-	}
+	}*/
 	else{
 		Uartprint((char *) not_found,-1);
 		Uartprint((char *) prompt,-1);

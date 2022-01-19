@@ -1,114 +1,27 @@
+/**
+  ******************************************************************************
+  * @file           :motor.c
+  * @brief          :fichier contenant toutes les fonctions en lien avec les moteurs
+  * @author 		:COLONNETTE
+  ******************************************************************************
+ */
+
 #include "motor.h"
 
+/**
+ * Chaque moteur possède une structure MotorState décrivant son état à tout instant
+ */
 MotorState Motor1;
 MotorState Motor2;
 MotorState Motor3;
 MotorState Motor4;
 MotorState Motor5;
 
-/*
-void pinStepSizeConfig(int M) {
-	switch(M) {
-	case 1:
-		if (Motor1.stepSize==1) {
-			HAL_GPIO_WritePin(Motor1_M0_GPIO_Port, Motor1_M0_Pin, 0);
-			HAL_GPIO_WritePin(Motor1_M1_GPIO_Port, Motor1_M1_Pin, 0);
-		}
-		else if (Motor1.stepSize==2) {
-			HAL_GPIO_WritePin(Motor1_M0_GPIO_Port, Motor1_M0_Pin, 1);
-			HAL_GPIO_WritePin(Motor1_M1_GPIO_Port, Motor1_M1_Pin, 0);
-		}
-		else if (Motor1.stepSize==8) {
-			HAL_GPIO_WritePin(Motor1_M0_GPIO_Port, Motor1_M0_Pin, 0);
-			HAL_GPIO_WritePin(Motor1_M1_GPIO_Port, Motor1_M1_Pin, 1);
-		}
-		else if (Motor1.stepSize==16) {
-			HAL_GPIO_WritePin(Motor1_M0_GPIO_Port, Motor1_M0_Pin, 1);
-			HAL_GPIO_WritePin(Motor1_M1_GPIO_Port, Motor1_M1_Pin, 1);
-		}
-		else Uartprint("\r\n Error Motor1 stepSize configuration : ",Motor1.stepSize);
-		break;
-	case 2:
-		if (Motor2.stepSize==1) {
-			HAL_GPIO_WritePin(Motor2_M0_GPIO_Port, Motor2_M0_Pin, 0);
-			HAL_GPIO_WritePin(Motor2_M1_GPIO_Port, Motor2_M1_Pin, 0);
-		}
-		else if (Motor2.stepSize==2) {
-			HAL_GPIO_WritePin(Motor2_M0_GPIO_Port, Motor2_M0_Pin, 1);
-			HAL_GPIO_WritePin(Motor2_M1_GPIO_Port, Motor2_M1_Pin, 0);
-		}
-		else if (Motor2.stepSize==8) {
-			HAL_GPIO_WritePin(Motor2_M0_GPIO_Port, Motor2_M0_Pin, 0);
-			HAL_GPIO_WritePin(Motor2_M1_GPIO_Port, Motor2_M1_Pin, 1);
-		}
-		else if (Motor2.stepSize==16) {
-			HAL_GPIO_WritePin(Motor2_M0_GPIO_Port, Motor2_M0_Pin, 1);
-			HAL_GPIO_WritePin(Motor2_M1_GPIO_Port, Motor2_M1_Pin, 1);
-		}
-		else Uartprint("\r\n Error Motor2 stepSize configuration : ",Motor2.stepSize);
-		break;
-	case 3:
-		if (Motor3.stepSize==1) {
-			HAL_GPIO_WritePin(Motor3_M0_GPIO_Port, Motor3_M0_Pin, 0);
-			HAL_GPIO_WritePin(Motor3_M1_GPIO_Port, Motor3_M1_Pin, 0);
-		}
-		else if (Motor3.stepSize==2) {
-			HAL_GPIO_WritePin(Motor3_M0_GPIO_Port, Motor3_M0_Pin, 1);
-			HAL_GPIO_WritePin(Motor3_M1_GPIO_Port, Motor3_M1_Pin, 0);
-		}
-		else if (Motor3.stepSize==8) {
-			HAL_GPIO_WritePin(Motor3_M0_GPIO_Port, Motor3_M0_Pin, 0);
-			HAL_GPIO_WritePin(Motor3_M1_GPIO_Port, Motor3_M1_Pin, 1);
-		}
-		else if (Motor3.stepSize==16) {
-			HAL_GPIO_WritePin(Motor3_M0_GPIO_Port, Motor3_M0_Pin, 1);
-			HAL_GPIO_WritePin(Motor3_M1_GPIO_Port, Motor3_M1_Pin, 1);
-		}
-		else Uartprint("\r\n Error Motor3 stepSize configuration : ",Motor3.stepSize);
-		break;
-	case 4:
-		if (Motor4.stepSize==1) {
-			HAL_GPIO_WritePin(Motor4_M0_GPIO_Port, Motor4_M0_Pin, 0);
-			HAL_GPIO_WritePin(Motor4_M1_GPIO_Port, Motor4_M1_Pin, 0);
-		}
-		else if (Motor4.stepSize==2) {
-			HAL_GPIO_WritePin(Motor4_M0_GPIO_Port, Motor4_M0_Pin, 1);
-			HAL_GPIO_WritePin(Motor4_M1_GPIO_Port, Motor4_M1_Pin, 0);
-		}
-		else if (Motor4.stepSize==8) {
-			HAL_GPIO_WritePin(Motor4_M0_GPIO_Port, Motor4_M0_Pin, 0);
-			HAL_GPIO_WritePin(Motor4_M1_GPIO_Port, Motor4_M1_Pin, 1);
-		}
-		else if (Motor4.stepSize==16) {
-			HAL_GPIO_WritePin(Motor4_M0_GPIO_Port, Motor4_M0_Pin, 1);
-			HAL_GPIO_WritePin(Motor4_M1_GPIO_Port, Motor4_M1_Pin, 1);
-		}
-		else Uartprint("\r\n Error Motor4 stepSize configuration : ",Motor4.stepSize);
-		break;
-	case 5:
-		if (Motor5.stepSize==1) {
-			HAL_GPIO_WritePin(Motor5_M0_GPIO_Port, Motor5_M0_Pin, 0);
-			HAL_GPIO_WritePin(Motor5_M1_GPIO_Port, Motor5_M1_Pin, 0);
-		}
-		else if (Motor5.stepSize==2) {
-			HAL_GPIO_WritePin(Motor5_M0_GPIO_Port, Motor5_M0_Pin, 1);
-			HAL_GPIO_WritePin(Motor5_M1_GPIO_Port, Motor5_M1_Pin, 0);
-		}
-		else if (Motor5.stepSize==8) {
-			HAL_GPIO_WritePin(Motor5_M0_GPIO_Port, Motor5_M0_Pin, 0);
-			HAL_GPIO_WritePin(Motor5_M1_GPIO_Port, Motor5_M1_Pin, 1);
-		}
-		else if (Motor5.stepSize==16) {
-			HAL_GPIO_WritePin(Motor5_M0_GPIO_Port, Motor5_M0_Pin, 1);
-			HAL_GPIO_WritePin(Motor5_M1_GPIO_Port, Motor5_M1_Pin, 1);
-		}
-		else Uartprint("\r\n Error Motor5 stepSize configuration : ",Motor5.stepSize);
-		break;
-	default:
-		Uartprint("\r\n Error : unknow Motor",-1);
-		break;
-	}
-}*/
+/**
+ * @param          :M le numéro du moteur
+ * @retval		   :None
+ * @brief          :Active ou désactive un driver de moteur selon son MotorState
+ */
 void pinMotorReadyConfig(int M) {
 	switch(M) {
 	case 1:
@@ -133,6 +46,11 @@ void pinMotorReadyConfig(int M) {
 		break;
 	}
 }
+/**
+ * @param          :M le numéro du moteur
+ * @retval		   :None
+ * @brief          :Change le sens de rotation d'un driver de moteur selon son MotorState
+ */
 void pinSensConfig(int M) {
 	switch(M) {
 	case 1:
@@ -157,6 +75,14 @@ void pinSensConfig(int M) {
 		break;
 	}
 }
+/**
+ * @param          :M le numéro du moteur, v la vitesse de rotation en tr/s
+ * @retval		   :None
+ * @brief          :Reconfigure le timer, lié à un moteur, générant l'horloge qui cadence la vitesse du dit moteur
+ *
+ * @attention
+ * La précision sur la vitesse étant d'un dixième, v doit être donné avec un facteur 10
+ */
 void VitConfig(int M,int v) {
 	int fTim;
 	switch(M) {
@@ -186,6 +112,11 @@ void VitConfig(int M,int v) {
 		break;
 	}
 }
+/**
+ * @param          :M le numéro du moteur
+ * @retval		   :None
+ * @brief          :Active ou désactive l'horloge du driver d'un moteur selon son MotorState
+ */
 void pwmMotor(int M) {
 	switch (M) {
 	case 1:
@@ -214,30 +145,31 @@ void pwmMotor(int M) {
 		break;
 	}
 }
+/**
+ * @param          :M le pointeur vers la chaîne de caractère contenant le nom du moteur
+ * @retval		   :None
+ * @brief          :Configure l'état d'un driver de moteur selon son MotorState
+ */
 void MotorConfig(char * M) {
 	if (strcmp(M,"Motor1")==0)	{
-		//pinStepSizeConfig(1);
 		pinSensConfig(1);
 		pinMotorReadyConfig(1);
 		VitConfig(1,Motor1.vitesse);
 		pwmMotor(1);
 	}
 	else if (strcmp(M,"Motor2")==0)	{
-		//pinStepSizeConfig(2);
 		pinSensConfig(2);
 		pinMotorReadyConfig(2);
 		VitConfig(2,Motor2.vitesse);
 		pwmMotor(2);
 	}
 	else if (strcmp(M,"Motor3")==0)	{
-		//pinStepSizeConfig(3);
 		pinSensConfig(3);
 		pinMotorReadyConfig(3);
 		VitConfig(3,Motor3.vitesse);
 		pwmMotor(3);
 	}
 	else if (strcmp(M,"Motor4")==0)	{
-		//pinStepSizeConfig(4);
 		pinSensConfig(4);
 		pinMotorReadyConfig(4);
 		VitConfig(4,Motor4.vitesse);
@@ -249,6 +181,11 @@ void MotorConfig(char * M) {
 }
 
 
+/**
+ * @param          :None
+ * @retval		   :None
+ * @brief          :Définie le MotorState, c'est à dire les caractéristiques et l'état initial, de chaque moteur
+ */
 void MotorInit() {
 	Motor1.mReduction=27;
 	Motor1.mStepRevo=200;
@@ -265,7 +202,7 @@ void MotorInit() {
 	Motor2.stepSize=16;
 	Motor2.position=0;
 	Motor2.vitesse=50;
-	MotorOrder("Motor2",true,true,false);
+	MotorOrder("Motor2",true,false,false);
 	MotorConfig("Motor2");
 
 	Motor3.mReduction=27;
@@ -283,7 +220,7 @@ void MotorInit() {
 	Motor4.stepSize=16;
 	Motor4.position=0;
 	Motor4.vitesse=10;
-	MotorOrder("Motor4",true,true,false);
+	MotorOrder("Motor4",true,false,false);
 	MotorConfig("Motor4");
 
 	Motor5.htim=htim3;
@@ -292,30 +229,12 @@ void MotorInit() {
 	MotorConfig("Motor5");
 }
 
-void ServoPosition(int a) {
-	float Num=(float) a/180;;
-	if (a<0) Num=0.0;
-	if (a>180) Num=1.0;
-	float dPas=0.0018;
-	float dT=1.8;
-	float Tmin=0.6;
-	float CCR= (Num*dT+Tmin)/dPas +0.5;
-	Motor5.htim.Instance->CCR2= CCR/1;
-}
-void Pince(int a) {
-	switch (a) {
-	case 0:
-		ServoPosition(0);
-		break;
-	case 1:
-		ServoPosition(180);
-		break;
-	default:
-		sprintf((char *)uart_tx_buffer,"\r\nError position pince unkwon");
-		HAL_UART_Transmit(&huart2, uart_tx_buffer, strlen(uart_tx_buffer), HAL_MAX_DELAY);
-		break;
-	}
-}
+/**
+ * @param          :M le pointeur vers la chaîne de caractère contenant le nom du moteur, ready active et sens trois booléens
+ * @retval		   :None
+ * @brief          :Modifie les ordres qu'un moteur doit suivre via son MotorState.
+ * ready contrôle l'état commandable ou non du moteur, active contrôle le fait que le moteur tourne ou non, sens contrôle le sens de rotation
+ */
 void MotorOrder(char * M,bool ready,bool active,bool sens) {
 	if (strcmp(M,"Motor1")==0)	{
 		Motor1.Ready=ready;
@@ -343,6 +262,11 @@ void MotorOrder(char * M,bool ready,bool active,bool sens) {
 	}
 }
 
+/**
+ * @param          :M le pointeur vers la chaîne de caractère contenant le nom du moteur, p le nombre absolue de step à parcourir
+ * @retval		   :None
+ * @brief          :Fait tourner un moteur d'un nombre p de step selon son MotorState.
+ */
 void MotorPosition(char * M,int p) {
 	if (strcmp(M,"Motor1")==0) {
 		if (Motor1.Sens) p*=-1;
@@ -369,6 +293,13 @@ void MotorPosition(char * M,int p) {
 		MotorCmd("Motor4");
 	}
 }
+/**
+ * @param          :M le pointeur vers la chaîne de caractère contenant le nom du moteur, a un angle à parcourir
+ * @retval		   :None
+ * @brief          :Fait tourner un moteur d'un angle a selon son MotorState.
+ * @attention
+ * La précision sur l'angle étant d'un dixième, a doit être donné avec un facteur 10
+ */
 void MotorAngle(char * M,int a) {
 	int step;
 	if (strcmp(M,"Motor1")==0) {
@@ -389,6 +320,11 @@ void MotorAngle(char * M,int a) {
 	}
 }
 
+/**
+ * @param          :M le pointeur vers la chaîne de caractère contenant le nom du moteur
+ * @retval		   :None
+ * @brief          :Reconfigure un moteur selon son MotorState.
+ */
 void MotorCmd(char * M) {
 	if (strcmp(M,"Motor1")==0) {
 		MotorConfig(M);
@@ -407,9 +343,49 @@ void MotorCmd(char * M) {
 		pwmMotor(4);
 	}
 }
+/**
+ * @param          :None
+ * @retval		   :None
+ * @brief          :Reconfigure tous les moteurs selon leurs MotorState.
+ */
 void MotorCmdAll() {
 	MotorCmd("Motor1");
 	MotorCmd("Motor2");
 	MotorCmd("Motor3");
 	MotorCmd("Motor4");
+}
+
+/**
+ * @param          :a un angle compris entre 0 et 180 degrée
+ * @retval		   :None
+ * @brief          :Ajuste l'angle de fermeture du servomoteur lié à la pince
+ */
+void ServoPosition(int a) {
+	float Num=(float) a/180;;
+	if (a<0) Num=0.0;
+	if (a>180) Num=1.0;
+	float dPas=0.0018;
+	float dT=1.8;
+	float Tmin=0.6;
+	float CCR= (Num*dT+Tmin)/dPas +0.5;
+	Motor5.htim.Instance->CCR2= CCR/1;
+}
+/**
+ * @param          :a un état 0 ou 1
+ * @retval		   :None
+ * @brief          :Ouvre ou ferme la pince
+ */
+void Pince(int a) {
+	switch (a) {
+	case 0:
+		ServoPosition(0);
+		break;
+	case 1:
+		ServoPosition(180);
+		break;
+	default:
+		sprintf((char *)uart_tx_buffer,"\r\nError position pince unkwon");
+		HAL_UART_Transmit(&huart2, uart_tx_buffer, strlen(uart_tx_buffer), HAL_MAX_DELAY);
+		break;
+	}
 }
